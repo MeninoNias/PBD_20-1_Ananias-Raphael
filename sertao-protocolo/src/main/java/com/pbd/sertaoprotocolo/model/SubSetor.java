@@ -9,13 +9,12 @@ public class SubSetor extends AbstractEntity<Long> {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "ativo", columnDefinition="tinyint(1) default 1")
-    private boolean ativo;
+    @Column(name = "ativo")
+    private boolean ativo = true;
 
     @ManyToOne
-    @JoinColumn(name = "setor_id_fk")
+    @JoinColumn(name = "id_setor_fk")
     private Setor setor;
-
 
     public String getNome() {
         return nome;

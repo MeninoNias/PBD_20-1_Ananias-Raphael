@@ -13,18 +13,18 @@ public class Institucao extends AbstractEntity<Long>{
     @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
 
-    @Column(name = "ativo", columnDefinition="tinyint(1) default 1")
-    private boolean ativo;
+    @Column(name = "ativo")
+    private boolean ativo = true;
 
-    @Column(name = "bloqueado", columnDefinition="tinyint(0) default 0")
-    private boolean bloqueado;
+    @Column(name = "bloqueado")
+    private boolean bloqueado = false;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id_fk")
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "setores")
-    private List<Setor> setors;
+    @OneToMany(mappedBy = "institucao")
+    private List<Setor> setores;
 
     public String getNome() {
         return nome;
