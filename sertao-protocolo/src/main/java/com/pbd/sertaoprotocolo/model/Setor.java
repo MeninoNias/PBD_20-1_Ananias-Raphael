@@ -14,8 +14,8 @@ public class Setor extends AbstractEntity<Long>{
     private boolean ativo = true;
 
     @ManyToOne
-    @JoinColumn(name = "id_institucao_fk")
-    private Institucao institucao;
+    @JoinColumn(name = "id_instituicao_fk")
+    private Instituicao institucao;
 
     @OneToMany(mappedBy = "setor")
     private List<SubSetor> subSetors;
@@ -36,11 +36,11 @@ public class Setor extends AbstractEntity<Long>{
         this.ativo = ativo;
     }
 
-    public Institucao getInstitucao() {
+    public Instituicao getInstitucao() {
         return institucao;
     }
 
-    public void setInstitucao(Institucao institucao) {
+    public void setInstitucao(Instituicao institucao) {
         this.institucao = institucao;
     }
 }

@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "institucaos")
-public class Institucao extends AbstractEntity<Long>{
+@Table(name = "instituicaos")
+public class Instituicao extends AbstractEntity<Long>{
 
     @Column(nullable = false)
     private String nome;
@@ -23,7 +23,7 @@ public class Institucao extends AbstractEntity<Long>{
     @JoinColumn(name = "endereco_id_fk")
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "institucao")
+    @OneToMany(mappedBy = "instituicao")
     private List<Setor> setores;
 
     public String getNome() {
