@@ -1,11 +1,20 @@
 package com.pbd.sertaoprotocolo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "setores")
-public class Setor extends AbstractEntity<Long>{
+public class Setor extends AbstractEntity<Long> {
 
     @Column(name = "nome")
     private String nome;
@@ -15,32 +24,10 @@ public class Setor extends AbstractEntity<Long>{
 
     @ManyToOne
     @JoinColumn(name = "id_instituicao_fk")
-    private Instituicao institucao;
+    private Instituicao instituicao;
 
     @OneToMany(mappedBy = "setor")
     private List<SubSetor> subSetors;
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public Instituicao getInstitucao() {
-        return institucao;
-    }
-
-    public void setInstitucao(Instituicao institucao) {
-        this.institucao = institucao;
-    }
 }
