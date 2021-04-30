@@ -10,6 +10,6 @@ public interface AvisoService {
     Aviso getAviso(Long id);
     Aviso createAviso(Aviso aviso);
     Aviso updateAviso(Long id, Aviso aviso);
-    Aviso deleteCargo(Long id);
+    Aviso deleteAviso(Long id);
 
 }
