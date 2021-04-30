@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @Builder
@@ -41,5 +42,7 @@ public class Funcionario extends AbstractEntity<Long> {
     @JoinColumn(name = "id_subsetor_fk")
     private SubSetor lotacao;
 
+    @OneToMany(mappedBy = "funcionario")
+    private List<Protocolo> protocolos;
 
 }
