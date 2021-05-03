@@ -1,22 +1,182 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-</head>
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
 <body>
-<h1>Hello, world!</h1>
+<div layout:fragment="main">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+                        <div class="row">
+                            <!--[ daily sales section ] start-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card daily-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">PROTOCOLOS RESPONDIDOS</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center m-b-0">1</h3>
+                                            </div>
 
+                                            <div class="col-3 text-right">
+                                                <p class="m-b-0">16%</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress m-t-30" style="height: 7px;">
+                                            <div class="progress-bar progress-c-theme" role="progressbar"
+                                                 style="width: 50%;" aria-valuenow="50" aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ daily sales section ] end-->
+                            <!--[ Monthly  sales section ] starts-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card Monthly-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">PROTOCOLOS PENDENTES</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0">5</h3>
+                                            </div>
+                                            <div class="col-3 text-right">
+                                                <p class="m-b-0">83%</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress m-t-30" style="height: 7px;">
+                                            <div class="progress-bar progress-c-theme2" role="progressbar"
+                                                 style="width: 35%;" aria-valuenow="35" aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ Monthly  sales section ] end-->
+                            <!--[ year  sales section ] starts-->
+                            <div class="col-md-12 col-xl-4">
+                                <div class="card yearly-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">PROTOCOLOS CANCELADOS</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0">0</h3>
+                                            </div>
+                                            <div class="col-3 text-right">
+                                                <p class="m-b-0">0%</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress m-t-30" style="height: 7px;">
+                                            <div class="progress-bar progress-c-theme" role="progressbar"
+                                                 style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ year  sales section ] end-->
+                            <!--[ Recent Users ] start-->
+                            <div class="col-xl-8 col-md-6">
+                                <div class="card Recent-Users">
+                                    <div class="card-header">
+                                        <h5>Ultimos Protocolos</h5>
+                                    </div>
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                <tr class="unread">
+                                                    <td><img class="rounded-circle" style="width:40px;"
+                                                             src="assets/images/user/avatar-1.jpg"
+                                                             alt="activity-user"></td>
+                                                    <td>
+                                                        <h6 class="mb-1">Isabella Christensen</h6>
+                                                        <p class="m-0">Lorem Ipsum is simply…</p>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="text-muted"><i
+                                                                class="fas fa-circle text-c-green f-10 m-r-15"></i>11
+                                                            MAY 12:56</h6>
+                                                    </td>
+                                                    <td><a href="#!"
+                                                           class="label theme-bg text-white f-12">Responder</a></td>
+                                                </tr>
+                                                <tr class="unread">
+                                                    <td><img class="rounded-circle" style="width:40px;"
+                                                             src="assets/images/user/avatar-2.jpg"
+                                                             alt="activity-user"></td>
+                                                    <td>
+                                                        <h6 class="mb-1">Mathilde Andersen</h6>
+                                                        <p class="m-0">Lorem Ipsum is simply text of…</p>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="text-muted"><i
+                                                                class="fas fa-circle text-c-red f-10 m-r-15"></i>11 MAY
+                                                            10:35</h6>
+                                                    </td>
+                                                    <td><a href="#!"
+                                                           class="label theme-bg text-white f-12">Responder</a></td>
+
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ Recent Users ] end-->
+
+                            <!-- [ statistics year chart ] start -->
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card card-event">
+                                    <div class="card-block">
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col">
+                                                <h5 class="m-0">Informações</h5>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-block border-bottom">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-auto">
+                                                <i class="feather icon-user f-30 text-c-green"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h3 class="f-w-300">2</h3>
+                                                <span class="d-block text-uppercase">TOTAL DE FUNCIONARIOS</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-auto">
+                                                <i class="feather icon-map-pin f-30 text-c-blue"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h3 class="f-w-300">1</h3>
+                                                <span class="d-block text-uppercase">LOTAÇÕES</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ statistics year chart ] end -->
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
