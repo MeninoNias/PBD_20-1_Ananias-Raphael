@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-        return "funcionario/form_funcionario";
+        return "home";
     }
 
 }
