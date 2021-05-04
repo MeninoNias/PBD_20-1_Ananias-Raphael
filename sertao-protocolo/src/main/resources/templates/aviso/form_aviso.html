@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html layout:decorate="~{core/base}">
 <body>
+<div layout:fragment="main">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
 
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken"
+                               value="RqnFEHtNa9dB94cEpmiq4Aa1ZSxblm1jeqMmTT4L25AZAQYbIG3DnzzzJicWT3vU">
+
+
+                        <div class="form-group">
+                            <label for="id_funcionario">Funcionario:</label>
+                            <select name="funcionario" class="form-control" required="" id="id_funcionario" multiple="">
+                                <option value="1">ANANIAS RAPHAEL DA SILVA NOBREGA</option>
+
+                                <option value="2">João Pinto</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_title">Titulo:</label>
+                            <input type="text" name="title" maxlength="160" class="form-control" required=""
+                                   id="id_title">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_texto">Aviso:</label>
+                            <textarea name="texto" cols="40" rows="10" class="form-control" required=""
+                                      id="id_texto"></textarea>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
