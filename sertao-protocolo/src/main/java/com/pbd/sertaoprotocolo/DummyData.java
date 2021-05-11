@@ -21,13 +21,13 @@ public class DummyData {
     @Autowired
     RoleRepository roleRepository;
 
-    @PostConstruct
+//    @PostConstruct
     public void saveUser(){
 
         User user = new User();
-        user.setUserName("admin");
+        user.setUserName("ananias");
         user.setActive(true);
-        user.setPassword("admin");
+        user.setPassword("ananias123");
         user.setEmail("admin@admin.com");
 
         userService.saveUser(user);

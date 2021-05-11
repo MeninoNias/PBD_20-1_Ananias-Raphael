@@ -1,7 +1,7 @@
 <nav class="pcoded-navbar" th:fragment="frag-sidebar">
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
-            <a href="/" class="b-brand">
+            <a href="/home" class="b-brand">
                 <div class="b-bg">
                     <i class="feather icon-lock"></i>
                 </div>
@@ -16,7 +16,7 @@
                 </li>
                 <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
                     class="nav-item ">
-                    <a href="/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <a href="/home" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
                         <span class="pcoded-mtext">Home</span></a>
                 </li>
                 <!--                {#-->
@@ -56,7 +56,7 @@
                             class="pcoded-mtext">User</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/" class="">Perfil</a></li>
-                        <li class=""><a href='/' class="">Logout</a></li>
+                        <li class=""><a th:href="@{/logout}" class="">Logout</a></li>
                     </ul>
                 </li>
             </ul>
