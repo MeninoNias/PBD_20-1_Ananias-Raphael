@@ -8,6 +8,7 @@ public interface FuncionarioService {
 
     List<Funcionario> getFuncionarios();
     Funcionario getFuncionario(Long id);
+    Funcionario getFuncionarioMat(String mat);
     Funcionario createFuncionario(Funcionario funcionario);
     Funcionario updateFuncionario(Long id, Funcionario funcionario);
     Funcionario deleteFuncionario(Long id);

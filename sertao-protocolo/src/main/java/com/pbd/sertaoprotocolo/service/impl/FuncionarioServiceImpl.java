@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.repository.FuncionarioRepository;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Autowired
@@ -20,6 +22,11 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     @Override
     public Funcionario getFuncionario(Long id) {
         return funcionarioRepository.findById(id).get();
+    }
+
+    @Override
+    public Funcionario getFuncionarioMat(String mat) {
+        return funcionarioRepository.findByMatricula(mat);
     }
 
     @Override

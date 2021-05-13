@@ -7,34 +7,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" href="/login/images/icons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="/login/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="/login/vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="/login/vendor/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="/login/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/login/css/main.css">
+    <link rel="icon" type="image/png" href="/assetslogin/images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/assetslogin/css/main.css">
+
+    <link href="/assetshome/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assetshome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assetshome/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assetshome/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assetshome/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assetshome/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <link href="/assetshome/css/style.css" rel="stylesheet">
 
 </head>
 <body>
-<div class="limiter">
-    <div class="container-login100">
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
 
+        <div class="logo me-auto">
+            <h1><a href="/">Sertão Protocolo</a></h1>
+        </div>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a class="nav-link scrollto" href="/">Home</a></li>
+                <li><a class="nav-link scrollto" href="/login">Entrar</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
     </div>
+</header><!-- End Header -->
+<div class="container">
+    <form autocomplete="on" th:action="@{/registration}" th:object="${userMatDTO}" method="POST">
+        <div class="form-row mt-5 pt-5">
+            <div class="form-group col-md-6">
+                <label for="matricula">Matricula</label>
+                <input type="text" class="form-control" id="matricula" placeholder="0000" th:field="*{matricula}">
+                <span th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}">Email Error</span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{userName}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="exemplo@sertaoprotocolo.com"
+                   th:field="*{email}">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}">
+            </div>
+            <!--            <div class="form-group col-md-6">-->
+            <!--                <label for="password2">Confirmar senha</label>-->
+            <!--                <input type="password" class="form-control" id="password2" name="password2">-->
+            <!--            </div>-->
+        </div>
+        <!--        <h6><span class="text-success" th:utext="${successMessage}"></span></h6>-->
+        <!--        <h6><span class="text-success" th:utext="${error}"></span></h6>-->
+        <h6 class="pr-5 ml-1"><strong>ATENÇÃO!!</strong></h6>
+        <p class="pb-2"> Somente funcionarios cadastrados no sistema podem criar os seus usuarios e começar a
+            utilizar das vantagens do <strong>Sertão Protocolo</strong></p>
+        <div class="text-center">
+            <div class="row">
+                <div class="container-login100-form-btn col-6">
+                    <button type="submit" class="login101-form-btn">
+                        Confirmar
+                    </button>
+                </div>
+                <div class="container-login100-form-btn col-6">
+                    <a href="/" class="login100-form-btn">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
+
 <div id="dropDownSelect1"></div>
-<script src="/login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="/login/vendor/animsition/js/animsition.min.js"></script>
-<script src="/login/vendor/bootstrap/js/popper.min.js"></script>
-<script src="/login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/login/vendor/select2/select2.min.js"></script>
-<script src="/login/vendor/daterangepicker/moment.min.js"></script>
-<script src="/login/vendor/daterangepicker/daterangepicker.js"></script>
-<script src="/login/vendor/countdowntime/countdowntime.js"></script>
-<script src="/login/js/main.js"></script>
+<script src="/assetslogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/assetslogin/vendor/animsition/js/animsition.min.js"></script>
+<script src="/assetslogin/vendor/bootstrap/js/popper.min.js"></script>
+<script src="/assetslogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assetslogin/vendor/select2/select2.min.js"></script>
+<script src="/assetslogin/vendor/daterangepicker/moment.min.js"></script>
+<script src="/assetslogin/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="/assetslogin/vendor/countdowntime/countdowntime.js"></script>
+<script src="/assetslogin/js/main.js"></script>
 </body>
 </html>
