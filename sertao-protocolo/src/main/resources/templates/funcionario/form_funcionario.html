@@ -36,9 +36,9 @@
 <!--                            </div>-->
                             <div class="form-group col-md-8">
                                 <label for="id_cargo">Cargo</label>
-                                <select id="id_cargo" class="form-control">
+                                <select id="id_cargo" class="form-control" th:field="*{cargo}">
                                     <option selected>Escolher...</option>
-                                    <option>...</option>
+                                    <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}">...</option>
                                 </select>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 <label for="id_estado">Estado</label>
                                 <select id="id_estado" class="form-control" th:field="*{endereco.estado}">
                                     <option selected>Escolher...</option>
-                                    <option th:each="d : ${estados}" th:value="${d.id}" th:text="${d.nome}">...</option>
+                                    <option th:each="uf : ${estados}" th:value="${uf}" th:text="${uf.sigla}">...</option>
                                 </select>
                             </div>
                         </div>

@@ -1,18 +1,23 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.dto.UserMatDTO;
+import com.pbd.sertaoprotocolo.model.Cargo;
+import com.pbd.sertaoprotocolo.model.Cidade;
 import com.pbd.sertaoprotocolo.model.Funcionario;
-import com.pbd.sertaoprotocolo.model.User;
+import com.pbd.sertaoprotocolo.model.UF;
+import com.pbd.sertaoprotocolo.service.CargoService;
+import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -20,6 +25,12 @@ public class FuncionarioController {
 
     @Autowired
     private FuncionarioService funcionarioService;
+
+    @Autowired
+    private CidadeService cidadeService;
+
+    @Autowired
+    private CargoService cargoService;
 
     @GetMapping("/listar")
     public String listFuncionario() {
@@ -49,5 +60,21 @@ public class FuncionarioController {
         }
         return modelAndView;
     }
+
+    @ModelAttribute("cidades")
+    public List<Cidade> listCidades() {
+        return cidadeService.getCidades();
+    }
+
+    @ModelAttribute("cargos")
+    public List<Cargo> listCargos() {
+        return cargoService.getCargos();
+    }
+
+    @ModelAttribute("estados")
+    public UF[] listEstados() {
+        return UF.values();
+    }
+
 
 }

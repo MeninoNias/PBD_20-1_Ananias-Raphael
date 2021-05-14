@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Cargo;
 import com.pbd.sertaoprotocolo.repository.CargoRepository;
 import com.pbd.sertaoprotocolo.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CargoServiceImpl implements CargoService {
 
     @Autowired

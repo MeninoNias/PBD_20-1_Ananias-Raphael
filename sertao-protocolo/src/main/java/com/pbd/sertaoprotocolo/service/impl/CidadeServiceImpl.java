@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Cidade;
 import com.pbd.sertaoprotocolo.repository.CidadeRepository;
 import com.pbd.sertaoprotocolo.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CidadeServiceImpl implements CidadeService {
 
     @Autowired
