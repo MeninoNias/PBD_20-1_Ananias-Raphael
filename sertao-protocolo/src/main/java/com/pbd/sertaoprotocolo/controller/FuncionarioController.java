@@ -36,25 +36,16 @@ public class FuncionarioController {
         ModelAndView modelAndView = new ModelAndView();
 
         Funcionario funcionarioExist = funcionarioService.getFuncionarioMat(funcionario.getMatricula());
-        if(funcionarioExist != null){
-            if (funcionarioExist != null) {
-                result.rejectValue("userName", "error.funcionario", "Já existe um usuário registrado com o nome de usuário fornecido");
-            }
+        if (funcionarioExist != null) {
+            result.rejectValue("matricula", "error.funcionario", "Já existe um funcionario registrado com o essa matricula.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("funcionario/form_funcionario");
-            } else {
-                funcionarioService.createFuncionario(funcionarioExist);
-                modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
-                modelAndView.addObject("funcionario", new Funcionario());
-                modelAndView.setViewName("login/create_user");
             }
-        }
-        else {
-            result.rejectValue("matricula", "error.funcionario", "Funcinario não cadastrado");
-            if (result.hasErrors()) {
-                modelAndView.addObject("funcionario", funcionario);
-                modelAndView.setViewName("funcionario/form_funcionario");
-            }
+        } else {
+            funcionarioService.createFuncionario(funcionarioExist);
+            modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
+            modelAndView.addObject("funcionario", new Funcionario());
+            modelAndView.setViewName("funcionario/listar");
         }
         return modelAndView;
     }

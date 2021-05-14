@@ -9,52 +9,14 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post">
-                        <!--                        <h4 class="mb-0 pb-0">Autenticação</h4>-->
-                        <!--                        <hr class="mt-1 pt-0">-->
-                        <!--                        <div class="form-group row">-->
-                        <!--                            <div class="col-sm-1 col-form-label">-->
-                        <!--                                <label for="id_username">Usuário:</label>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="form-group col-md-4">-->
-                        <!--                                <input type="text" name="username" class="form-control" required="" id="id_username">-->
-                        <!--                                <div class="text-danger font-weight-bold"></div>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-sm-1 col-form-label">-->
-                        <!--                                <label for="id_username">Email:</label>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="form-group col-md-5">-->
-                        <!--                                <input type="email" name="email" class="form-control" required="" id="id_email">-->
-                        <!--                                <div class="text-danger font-weight-bold"></div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row form-group">-->
-                        <!--                            <div class="col-sm-1 col-form-label">-->
-                        <!--                                <label for="id_password">Senha:</label>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="form-group col-md-4">-->
-                        <!--                                <input type="password" name="password" class="form-control" required=""-->
-                        <!--                                       id="id_password">-->
-                        <!--                                <div class="text-danger font-weight-bold"></div>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-sm-2 col-form-label">-->
-                        <!--                                <label for="id_confirmePassword">Confirme Senha:</label>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="form-group col-md-4">-->
-                        <!--                                <input type="password" name="confirmePassword" class="form-control" required=""-->
-                        <!--                                       id="id_confirmePassword">-->
-                        <!--                                <div class="text-danger font-weight-bold"></div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
-
+                    <form method="post" th:object="${funcionario}" th:action="@{/new_func}">
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
                             <div class="form-group col-md-12">
                                 <label for="id_nome">Nome:</label>
                                 <input type="text" name="nome" maxlength="255" class="form-control" required=""
-                                       id="id_nome">
+                                       id="id_nome" placeholder="Nome" th:field="*{nome}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                         </div>
@@ -62,17 +24,17 @@
                             <div class="form-group col-md-4">
                                 <label for="id_matricula">Matricula:</label>
                                 <input type="number" name="matricula" class="form-control" required=""
-                                       id="id_matricula">
+                                       id="id_matricula" placeholder="0000" th:field="*{matricula}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
 
-                            <div class="form-group col-md-4 ">
-                                <label for="id_dt_admissao">Admitido em:</label>
-                                <input type="date" name="dt_admissao" class="form-control data-mask" required=""
-                                       id="id_dt_admissao">
-                                <div class="text-danger font-weight-bold"></div>
-                            </div>
-                            <div class="form-group col-md-4">
+<!--                            <div class="form-group col-md-4 ">-->
+<!--                                <label for="id_dt_admissao">Admitido em:</label>-->
+<!--                                <input type="date" name="dt_admissao" class="form-control data-mask" required=""-->
+<!--                                       id="id_dt_admissao" th:field="*{matricula}">-->
+<!--                                <div class="text-danger font-weight-bold"></div>-->
+<!--                            </div>-->
+                            <div class="form-group col-md-8">
                                 <label for="id_cargo">Cargo</label>
                                 <select id="id_cargo" class="form-control">
                                     <option selected>Escolher...</option>
@@ -87,7 +49,7 @@
                                 <label for="id_telefone">Telefone:</label>
                                 <input type="text" name="telefone" maxlength="14" minlength="14"
                                        class="form-control tel-mask" required=""
-                                       id="id_telefone">
+                                       id="id_telefone" placeholder="(99) 9 9999-9999" th:field="*{telefone}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                         </div>
@@ -98,38 +60,42 @@
                             <div class="form-group col-md-10">
                                 <label for="id_rua">Rua:</label>
                                 <input type="text" name="rua" maxlength="255" class="form-control" required=""
-                                       id="id_rua">
+                                       id="id_rua" th:field="*{endereco.rua}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="id_numero">Numero:</label>
                                 <input type="number" name="numero" class="form-control" required=""
-                                       id="id_numero">
+                                       id="id_numero" th:field="*{endereco.rua}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="id_bairro">Bairro:</label>
                                 <input type="text" name="bairro" maxlength="255" class="form-control" required=""
-                                       id="id_bairro">
+                                       id="id_bairro" th:field="*{endereco.bairro}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_complemento">Complemento:</label>
+                                <input type="text" name="complemento" maxlength="255" class="form-control" required=""
+                                       id="id_complemento" th:field="*{endereco.complemento}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="id_cidade">Cidade</label>
-                                <select id="id_cidade" class="form-control">
+                                <select id="id_cidade" class="form-control" th:field="*{endereco.cidade}">
                                     <option selected>Escolher...</option>
-                                    <option>...</option>
+                                    <option th:each="d : ${cidades}" th:value="${d.id}" th:text="${d.nome}">...</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="id_estado">Estado</label>
-                                <select id="id_estado" class="form-control">
+                                <select id="id_estado" class="form-control" th:field="*{endereco.estado}">
                                     <option selected>Escolher...</option>
-                                    <option>...</option>
+                                    <option th:each="d : ${estados}" th:value="${d.id}" th:text="${d.nome}">...</option>
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
                             <a th:href="@{/funcionarios/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
