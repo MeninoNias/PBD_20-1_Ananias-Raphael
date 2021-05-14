@@ -25,8 +25,8 @@ public class Funcionario extends AbstractEntity<Long> {
     @NotEmpty(message = "*Por favor, preencha o campo matricula")
     private String matricula;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_fk")
+    @OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

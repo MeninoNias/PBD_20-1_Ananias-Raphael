@@ -61,7 +61,6 @@ public class LoginController {
             }
         }
         else {
-            System.out.println("Aqui");
             result.rejectValue("matricula", "error.userMatDTO", "Funcinario não cadastrado");
             if (result.hasErrors()) {
                 modelAndView.addObject("userMatDTO", userMatDTO);

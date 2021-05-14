@@ -10,45 +10,42 @@
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
                     <form method="post">
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                               value="cn2rEyx1SOKbWUTgzraSnFfeeluufC7Nznr8TK8ZKK7znGFNSLV5GEEMYL9fNjBo">
-                        <h4 class="mb-0 pb-0">Autenticação</h4>
-                        <hr class="mt-1 pt-0">
-                        <div class="form-group row">
-                            <div class="col-sm-1 col-form-label">
-                                <label for="id_username">Usuário:</label>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" name="username" class="form-control" required="" id="id_username">
-                                <div class="text-danger font-weight-bold"></div>
-                            </div>
-                            <div class="col-sm-1 col-form-label">
-                                <label for="id_username">Email:</label>
-                            </div>
-                            <div class="form-group col-md-5">
-                                <input type="email" name="email" class="form-control" required="" id="id_email">
-                                <div class="text-danger font-weight-bold"></div>
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-sm-1 col-form-label">
-                                <label for="id_password">Senha:</label>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="password" name="password" class="form-control" required=""
-                                       id="id_password">
-                                <div class="text-danger font-weight-bold"></div>
-                            </div>
-                            <div class="col-sm-2 col-form-label">
-                                <label for="id_confirmePassword">Confirme Senha:</label>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="password" name="confirmePassword" class="form-control" required=""
-                                       id="id_confirmePassword">
-                                <div class="text-danger font-weight-bold"></div>
-                            </div>
-                        </div>
+                        <!--                        <h4 class="mb-0 pb-0">Autenticação</h4>-->
+                        <!--                        <hr class="mt-1 pt-0">-->
+                        <!--                        <div class="form-group row">-->
+                        <!--                            <div class="col-sm-1 col-form-label">-->
+                        <!--                                <label for="id_username">Usuário:</label>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="form-group col-md-4">-->
+                        <!--                                <input type="text" name="username" class="form-control" required="" id="id_username">-->
+                        <!--                                <div class="text-danger font-weight-bold"></div>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="col-sm-1 col-form-label">-->
+                        <!--                                <label for="id_username">Email:</label>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="form-group col-md-5">-->
+                        <!--                                <input type="email" name="email" class="form-control" required="" id="id_email">-->
+                        <!--                                <div class="text-danger font-weight-bold"></div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="row form-group">-->
+                        <!--                            <div class="col-sm-1 col-form-label">-->
+                        <!--                                <label for="id_password">Senha:</label>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="form-group col-md-4">-->
+                        <!--                                <input type="password" name="password" class="form-control" required=""-->
+                        <!--                                       id="id_password">-->
+                        <!--                                <div class="text-danger font-weight-bold"></div>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="col-sm-2 col-form-label">-->
+                        <!--                                <label for="id_confirmePassword">Confirme Senha:</label>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="form-group col-md-4">-->
+                        <!--                                <input type="password" name="confirmePassword" class="form-control" required=""-->
+                        <!--                                       id="id_confirmePassword">-->
+                        <!--                                <div class="text-danger font-weight-bold"></div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
 
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
@@ -61,8 +58,6 @@
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                         </div>
-
-
                         <div class="row form-group">
                             <div class="form-group col-md-4">
                                 <label for="id_matricula">Matricula:</label>
@@ -73,10 +68,21 @@
 
                             <div class="form-group col-md-4 ">
                                 <label for="id_dt_admissao">Admitido em:</label>
-                                <input type="text" name="dt_admissao" class="form-control data-mask" required=""
+                                <input type="date" name="dt_admissao" class="form-control data-mask" required=""
                                        id="id_dt_admissao">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_cargo">Cargo</label>
+                                <select id="id_cargo" class="form-control">
+                                    <option selected>Escolher...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <h4 class="mb-0 pb-0">Contato</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="row form-group">
                             <div class="form-group col-md-4">
                                 <label for="id_telefone">Telefone:</label>
                                 <input type="text" name="telefone" maxlength="14" minlength="14"
@@ -86,10 +92,47 @@
                             </div>
                         </div>
 
+                        <h4 class="mb-0 pb-0">Endereço</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-10">
+                                <label for="id_rua">Rua:</label>
+                                <input type="text" name="rua" maxlength="255" class="form-control" required=""
+                                       id="id_rua">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="id_numero">Numero:</label>
+                                <input type="number" name="numero" class="form-control" required=""
+                                       id="id_numero">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_bairro">Bairro:</label>
+                                <input type="text" name="bairro" maxlength="255" class="form-control" required=""
+                                       id="id_bairro">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_cidade">Cidade</label>
+                                <select id="id_cidade" class="form-control">
+                                    <option selected>Escolher...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_estado">Estado</label>
+                                <select id="id_estado" class="form-control">
+                                    <option selected>Escolher...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
-                            <a href="/index/entrada/" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
+                            <a th:href="@{/funcionarios/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
                         </div>
                     </form>
                     <!-- [ Main Content ] end -->

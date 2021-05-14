@@ -35,6 +35,10 @@ public class User extends AbstractEntity<Long>{
     @NotEmpty(message = "*Por favor, preencha o campo senha")
     private String password;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
     @Column(name = "active")
     private Boolean active;
 
