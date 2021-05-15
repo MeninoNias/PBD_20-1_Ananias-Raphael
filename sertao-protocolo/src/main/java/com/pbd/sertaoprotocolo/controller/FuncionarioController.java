@@ -7,6 +7,7 @@ import com.pbd.sertaoprotocolo.model.UF;
 import com.pbd.sertaoprotocolo.service.CargoService;
 import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -38,8 +39,12 @@ public class FuncionarioController {
     }
 
     @GetMapping("/new_func")
-    public String createFuncionario() {
-        return "funcionario/form_funcionario";
+    public ModelAndView createFuncionario(Funcionario funcionario) {
+        ModelAndView view = new ModelAndView();
+        view.addObject("cargos", cargoService.getCargos());
+        view.addObject("cidades", cidadeService.getCidades());
+        view.setViewName("funcionario/form_funcionario");
+        return view;
     }
 
     @RequestMapping(value = "/new_func", method = RequestMethod.POST)
@@ -61,20 +66,9 @@ public class FuncionarioController {
         return modelAndView;
     }
 
-    @ModelAttribute("cidades")
-    public List<Cidade> listCidades() {
-        return cidadeService.getCidades();
-    }
-
-    @ModelAttribute("cargos")
-    public List<Cargo> listCargos() {
-        return cargoService.getCargos();
-    }
-
-    @ModelAttribute("estados")
-    public UF[] listEstados() {
+    @ModelAttribute("ufs")
+    public UF[] listUFS(){
         return UF.values();
     }
-
 
 }

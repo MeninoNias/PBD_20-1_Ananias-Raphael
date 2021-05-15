@@ -1,9 +1,6 @@
 package com.pbd.sertaoprotocolo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,6 +11,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario extends AbstractEntity<Long> {
@@ -24,6 +23,9 @@ public class Funcionario extends AbstractEntity<Long> {
 
     @NotEmpty(message = "*Por favor, preencha o campo matricula")
     private String matricula;
+
+    @Length(min = 10, max = 11, message = "*Formato de telefone invalido")
+    private String telefone;
 
     @OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
