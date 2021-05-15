@@ -27,12 +27,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>0000</h6></th>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
-                                    <td class="text-center align-middle"><h6>AGENTE ADMINISTRATIVO</h6></td>
-                                    <td class="text-center align-middle"><h6>SEST</h6></td>
+                                <tr th:each="func : ${funcionarios}">
+                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{func.matricula}"></h6></th>
+                                    <td class="align-middle"><h6 th:text="*{func.nome}"></h6></td>
+                                    <td class="text-center align-middle"><h6 th:text="*{func.cargo.nome}"></h6></td>
+                                    <td class="text-center align-middle"><h6 th:text="*{func.lotacao.nome}"></h6></td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <button type="button" class="btn btn-success "><i

@@ -7,6 +7,7 @@ import com.pbd.sertaoprotocolo.model.UF;
 import com.pbd.sertaoprotocolo.service.CargoService;
 import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import com.pbd.sertaoprotocolo.service.SubSetorService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,9 +34,15 @@ public class FuncionarioController {
     @Autowired
     private CargoService cargoService;
 
+    @Autowired
+    private SubSetorService subSetorService;
+
     @GetMapping("/listar")
-    public String listFuncionario() {
-        return "funcionario/listar_funcionario";
+    public ModelAndView listFuncionario() {
+        ModelAndView view = new ModelAndView();
+        view.addObject("funcionarios", funcionarioService.getFuncionarios());
+        view.setViewName("funcionario/listar_funcionario");
+        return view;
     }
 
     @GetMapping("/new_func")
@@ -43,6 +50,7 @@ public class FuncionarioController {
         ModelAndView view = new ModelAndView();
         view.addObject("cargos", cargoService.getCargos());
         view.addObject("cidades", cidadeService.getCidades());
+        view.addObject("lotacoes", subSetorService.getSubSetors());
         view.setViewName("funcionario/form_funcionario");
         return view;
     }
