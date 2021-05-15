@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content pt-0">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form method="post" th:object="${cargo}" th:action="@{/cargos/new_cargo}">
+                        <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-12">
+                                <label for="id_nome">Nome:</label>
+                                <input type="text" name="nome" maxlength="255" class="form-control" required=""
+                                       id="id_nome" placeholder="Nome" th:field="*{nome}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
+                            <a th:href="@{/cargos/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
+                        </div>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
