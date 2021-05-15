@@ -16,21 +16,23 @@
                                 <tr>
                                     <th class="text-center">Username</th>
                                     <th class="text-center">E-mail</th>
-<!--                                    <th class="text-center">Funcionario</th>-->
+                                    <!--                                    <th class="text-center">Funcionario</th>-->
                                     <th class="text-center">Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody th:each="user : ${users}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{user.userName}"></h6></th>
+                                    <th scope="row" class="text-center align-middle"><h6
+                                            th:text="*{user.userName}"></h6></th>
                                     <td class="text-center align-middle"><h6 th:text="*{user.email}"></h6></td>
-<!--                                    <td class="align-middle"><h6 th:text="*{user.funcionario.nome}"></h6></td>-->
+                                    <!--                                    <td class="align-middle"><h6 th:text="*{user.funcionario.nome}"></h6></td>-->
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
+                                            <a th:href="@{/users/detail/{id} (id=${user.id}) }"
+                                               class="btn btn-success "><i
+                                                    class="feather icon-check-circle"></i></a>
+                                            <a type="button" class="btn btn-warning"><i
+                                                    class="feather icon-printer"></i></a>
                                         </div>
                                     </td>
                                 </tbody>

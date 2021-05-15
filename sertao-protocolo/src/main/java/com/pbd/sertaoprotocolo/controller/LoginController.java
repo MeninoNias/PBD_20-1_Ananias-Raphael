@@ -61,8 +61,7 @@ public class LoginController {
                 user1.setFuncionario(funcionarioExist);
                 userService.saveUser(user1);
                 modelAndView.addObject("successMessage", "Usuario registrado com sucesso");
-                modelAndView.addObject("user", new User());
-                modelAndView.setViewName("login/create_user");
+                modelAndView.setViewName("redirect:/login");
             }
         } else {
             result.rejectValue("matricula", "error.userMatDTO", "Funcinario não cadastrado");
