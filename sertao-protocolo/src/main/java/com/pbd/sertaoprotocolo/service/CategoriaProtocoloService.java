@@ -8,6 +8,7 @@ public interface CategoriaProtocoloService {
 
     List<CategoriaProtocolo> getCategoriaProtocolos();
     CategoriaProtocolo getCategoriaProtocolo(Long id);
+    CategoriaProtocolo getCategoriaProtocoloNome(String categoria);
     CategoriaProtocolo createCategoriaProtocolo(CategoriaProtocolo categoriaProtocolo);
     CategoriaProtocolo updateCategoriaProtocolo(Long id, CategoriaProtocolo categoriaProtocolo);
     CategoriaProtocolo deleteCategoriaProtocolo(Long id);

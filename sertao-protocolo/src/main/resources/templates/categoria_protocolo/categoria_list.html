@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="d-flex bd-highlight mb-2">
+                        <h3 class="mr-auto bd-highlight">CATEGORIA PROTOCOLO</h3>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/categorias/new_categoria}">Novo</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Codigo</th>
+                                    <th class="text-center">Cargo</th>
+                                    <th class="text-center">Abreviação</th>
+                                    <th class="text-center">Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="c : ${categorias}">
+                                <tr>
+                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{c.id}"></h6></th>
+                                    <td class="align-middle text-center"><h6 th:text="*{c.nome}"></h6></td>
+                                    <td class="align-middle text-center"><h6 th:text="*{c.abreviacao}"></h6></td>
+                                    <td class="text-center align-middle">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-success "><i
+                                                    class="feather icon-check-circle"></i></button>
+                                            <button type="button" class="btn btn-warning"><i
+                                                    class="feather icon-printer"></i></button>
+                                        </div>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

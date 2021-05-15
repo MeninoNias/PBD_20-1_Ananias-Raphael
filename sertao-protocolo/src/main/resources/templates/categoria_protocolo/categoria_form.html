@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content pt-0">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form method="post" th:object="${categoriaProtocolo}" th:action="@{/categorias/new_categoria}">
+                        <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-12">
+                                <label for="id_nome">Nome:</label>
+                                <input type="text" name="nome" maxlength="255" class="form-control" required=""
+                                       id="id_nome" placeholder="Categoria" th:field="*{nome}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_abreviacao">Abreviação:</label>
+                                <input type="text" name="abreviacao" maxlength="255" class="form-control" required=""
+                                       id="id_abreviacao" placeholder="ABREVIAÇÃO" th:field="*{abreviacao}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_descricao">Descrição:</label>
+                                <input type="text" name="descricao" maxlength="255" class="form-control" required=""
+                                       id="id_descricao" placeholder="Descrição" th:field="*{descricao}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
+                            <a th:href="@{/categorias/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
+                        </div>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
