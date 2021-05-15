@@ -8,6 +8,7 @@ public interface CargoService {
 
     List<Cargo> getCargos();
     Cargo getCargo(Long id);
+    Cargo getCargoNome(String nome);
     Cargo createCargo(Cargo cargo);
     Cargo updateCargo(Long id, Cargo cargo);
     Cargo deleteCargo(Long id);

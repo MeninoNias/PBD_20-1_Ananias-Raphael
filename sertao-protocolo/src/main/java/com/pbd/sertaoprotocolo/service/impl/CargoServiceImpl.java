@@ -25,6 +25,11 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
+    public Cargo getCargoNome(String nome) {
+        return cargoRepository.findByNome(nome);
+    }
+
+    @Override
     public Cargo createCargo(Cargo cargo) {
         return cargoRepository.save(cargo);
     }

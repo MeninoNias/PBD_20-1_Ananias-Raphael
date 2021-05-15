@@ -23,11 +23,10 @@
                                     <th class="text-center">Cargo</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-
+                                <tbody th:each="c : ${cargos}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>01</h6></th>
-                                    <td class="align-middle"><h6>AGENTE ADMINISTRATIVO</h6></td>
+                                    <th scope="row" class="text-center align-middle"><h6 th:text="${c.id}"></h6></th>
+                                    <td class="align-middle"><h6 th:text="${c.nome}"></h6></td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <button type="button" class="btn btn-success "><i

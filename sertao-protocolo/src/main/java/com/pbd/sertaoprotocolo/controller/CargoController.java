@@ -20,8 +20,11 @@ public class CargoController {
     private CargoService cargoService;
 
     @GetMapping("/listar")
-    public String listCargo() {
-        return "cargo/cargo_list";
+    public ModelAndView listCargo() {
+        ModelAndView view = new ModelAndView();
+        view.addObject("cargos", cargoService.getCargos());
+        view.setViewName("cargo/cargo_list");
+        return view;
     }
 
     @GetMapping("/new_cargo")
@@ -34,18 +37,19 @@ public class CargoController {
     @RequestMapping(value = "/new_cargo", method = RequestMethod.POST)
     public ModelAndView registerCargo(@Valid Cargo cargo, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
-
-        Cargo cargoExist = cargoService.getCargo(cargo.getId());
+        cargo.setNome(cargo.getNome().toUpperCase());
+        Cargo cargoExist = cargoService.getCargoNome(cargo.getNome());
         if (cargoExist != null) {
+            System.out.println("aqui");
             result.rejectValue("nome", "error.cargo", "Já existe um cargo registrado com o essa nome.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("cargo/cargo_form");
             }
         } else {
-            cargoService.createCargo(cargoExist);
+            cargoService.createCargo(cargo);
             modelAndView.addObject("successMessage", "Cargo registrado com sucesso");
             modelAndView.addObject("cargo", new Cargo());
-            modelAndView.setViewName("cargo/listar");
+            modelAndView.setViewName("cargo/cargo_list");
         }
         return modelAndView;
     }
