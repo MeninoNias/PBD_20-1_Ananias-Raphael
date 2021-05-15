@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content pt-0">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form th:object="${instituicoa}" th:action="@{/instituicoes/new_instituicao}" method="post">
+                        <div class="form-group row" >
+                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
+                            <div class="col-sm-7 pl-1">
+                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                            </div>
+                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
+                            <div class="col-sm-7 pl-1">
+                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                            </div>
+                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
+                            <div class="col-sm-7 pl-1">
+                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                            </div><label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
+                            <div class="col-sm-7 pl-1">
+                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-primary mb-2">Confirmar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

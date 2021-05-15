@@ -9,7 +9,7 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post" th:object="${funcionario}" th:action="@{/new_func}">
+                    <form method="post" th:object="${funcionario}" th:action="@{/funcionarios/new_func}">
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
@@ -47,7 +47,7 @@
                         <div class="row form-group">
                             <div class="form-group col-md-4">
                                 <label for="id_telefone">Telefone:</label>
-                                <input type="text" name="telefone" maxlength="14" minlength="14"
+                                <input type="text" name="telefone" maxlength="11" minlength="10"
                                        class="form-control tel-mask" required=""
                                        id="id_telefone" placeholder="(99) 9 9999-9999" th:field="*{telefone}">
                                 <div class="text-danger font-weight-bold"></div>
@@ -57,7 +57,13 @@
                         <h4 class="mb-0 pb-0">Endereço</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
-                            <div class="form-group col-md-10">
+                            <div class="form-group col-md-2">
+                                <label for="id_cep">CEP:</label>
+                                <input type="text" name="cep" class="form-control" required=""
+                                       id="id_cep" th:field="*{endereco.cep}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-8">
                                 <label for="id_rua">Rua:</label>
                                 <input type="text" name="rua" maxlength="255" class="form-control" required=""
                                        id="id_rua" th:field="*{endereco.logradouro}">
@@ -84,7 +90,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="id_estado">Estado</label>
-                                <select id="id_estado" class="form-control" th:field="*{endereco.cidade.uf}">
+                                <select id="id_estado" class="form-control" th:field="*{endereco.uf}">
                                     <option value="" selected>Escolher...</option>
                                     <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf.sigla}">...</option>
                                 </select>

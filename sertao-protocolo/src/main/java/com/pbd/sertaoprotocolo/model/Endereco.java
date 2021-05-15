@@ -24,6 +24,10 @@ public class Endereco extends AbstractEntity<Long>{
     @JoinColumn(name = "id_cidade_fk")
     private Cidade cidade;
 
+    @Column(nullable = false, length = 2)
+    @Enumerated(EnumType.STRING)
+    private UF uf;
+
     @Column(nullable = false, length = 5)
     private Integer numero;
 

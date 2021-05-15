@@ -2,12 +2,14 @@ package com.pbd.sertaoprotocolo.service.impl;
 
 import com.pbd.sertaoprotocolo.model.Instituicao;
 import com.pbd.sertaoprotocolo.repository.InstituicaoRepository;
-import com.pbd.sertaoprotocolo.service.InstituicaService;
+import com.pbd.sertaoprotocolo.service.InstituicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class InstituicaoServiceimpl implements InstituicaService {
+@Service
+public class InstituicaoServiceimpl implements InstituicaoService {
 
     @Autowired
     InstituicaoRepository instituicaoRepository;
@@ -15,6 +17,11 @@ public class InstituicaoServiceimpl implements InstituicaService {
     @Override
     public List<Instituicao> getInstituicaos() {
         return instituicaoRepository.findAll();
+    }
+
+    @Override
+    public Instituicao getInstituicaoCNPJ(String cnpj) {
+        return null;
     }
 
     @Override

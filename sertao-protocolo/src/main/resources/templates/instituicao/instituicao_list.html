@@ -10,8 +10,8 @@
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
                     <div class="d-flex bd-highlight mb-2">
-                        <h3 class="mr-auto bd-highlight">CARGOS</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/cargos/new_cargo}">Novo</a>
+                        <h3 class="mr-auto bd-highlight">INSTITUIÇÃO</h3>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/instituicoes/new_instituicao}">Novo</a>
                         </div>
                     </div>
                     <div class="row">
@@ -20,13 +20,13 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">Codigo</th>
-                                    <th class="text-center">Cargo</th>
+                                    <th class="text-center">Instituição</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="c : ${cargos}">
+                                <tbody th:each="i : ${instituicaos}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle"><h6 th:text="${c.id}"></h6></th>
-                                    <td class="align-middle"><h6 th:text="${c.nome}"></h6></td>
+                                    <th scope="row" class="text-center align-middle"><h6 th:text="${i.id}"></h6></th>
+                                    <td class="align-middle"><h6 th:text="${i.nome}"></h6></td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <button type="button" class="btn btn-success "><i

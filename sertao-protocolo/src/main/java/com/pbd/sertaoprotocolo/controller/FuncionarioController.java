@@ -58,7 +58,7 @@ public class FuncionarioController {
                 modelAndView.setViewName("funcionario/form_funcionario");
             }
         } else {
-            funcionarioService.createFuncionario(funcionarioExist);
+            funcionarioService.createFuncionario(funcionario);
             modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
             modelAndView.addObject("funcionario", new Funcionario());
             modelAndView.setViewName("funcionario/listar");
