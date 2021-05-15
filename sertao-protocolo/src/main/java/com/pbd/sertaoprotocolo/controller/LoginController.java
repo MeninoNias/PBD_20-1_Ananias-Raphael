@@ -35,6 +35,13 @@ public class LoginController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/forgot_password", method = RequestMethod.GET)
+    public ModelAndView forgotPassword() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login/forgot_password");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
