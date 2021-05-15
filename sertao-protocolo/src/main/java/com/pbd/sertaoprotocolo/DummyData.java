@@ -24,13 +24,17 @@ public class DummyData {
 //    @PostConstruct
     public void saveUser(){
 
-        User user = new User();
-        user.setUserName("ananias");
-        user.setActive(true);
-        user.setPassword("ananias123");
-        user.setEmail("admin@admin.com");
+//        User user = new User();
+//        user.setUserName("ananias");
+//        user.setActive(true);
+//        user.setPassword("ananias123");
+//        user.setEmail("admin@admin.com");
+//
+//        userService.saveUser(user);
 
-        userService.saveUser(user);
+        Role role = new Role();
+        role.setRole("USER");
+        roleRepository.save(role);
 
     }
 
