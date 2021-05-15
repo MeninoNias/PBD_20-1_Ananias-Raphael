@@ -9,26 +9,76 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form th:object="${instituicoa}" th:action="@{/instituicoes/new_instituicao}" method="post">
-                        <div class="form-group row" >
-                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
-                            <div class="col-sm-7 pl-1">
-                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                    <form method="post" th:object="${instituicao}" th:action="@{/instituicoes/new_instituicao}">
+                        <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-12">
+                                <label for="id_nome">Nome:</label>
+                                <input type="text" name="nome" maxlength="255" class="form-control" required=""
+                                       id="id_nome" placeholder="Nome" th:field="*{nome}">
+                                <div class="text-danger font-weight-bold"></div>
                             </div>
-                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
-                            <div class="col-sm-7 pl-1">
-                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group col-md-6">
+                                <label for="id_cnpj">CNPJ:</label>
+                                <input type="number" name="cnpj" class="form-control" required=""
+                                       id="id_cnpj" placeholder="CNPJ" th:field="*{cnpj}">
+                                <div class="text-danger font-weight-bold"></div>
                             </div>
-                            <label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
-                            <div class="col-sm-7 pl-1">
-                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
-                            </div><label for="id_cargo" class="col-sm-2 col-form-label pr-0 text-center">Instituição</label>
-                            <div class="col-sm-7 pl-1">
-                                <input type="text" class="form-control" id="id_cargo" placeholder="Cargo" th:field="*{nome}">
+                        </div>
+                        <h4 class="mb-0 pb-0">Endereço</h4>
+                        <hr class="mt-1 pt-0">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-2">
+                                <label for="id_cep">CEP:</label>
+                                <input type="text" name="cep" class="form-control" required=""
+                                       id="id_cep" placeholder="CEP" th:field="*{endereco.cep}">
+                                <div class="text-danger font-weight-bold"></div>
                             </div>
-                            <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary mb-2">Confirmar</button>
+                            <div class="form-group col-md-8">
+                                <label for="id_rua">Rua:</label>
+                                <input type="text" name="rua" maxlength="255" class="form-control" required=""
+                                       id="id_rua" placeholder="Rua" th:field="*{endereco.logradouro}">
+                                <div class="text-danger font-weight-bold"></div>
                             </div>
+                            <div class="form-group col-md-2">
+                                <label for="id_numero">Numero:</label>
+                                <input type="number" name="numero" class="form-control" required=""
+                                       id="id_numero" placeholder="Nº" th:field="*{endereco.numero}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_bairro">Bairro:</label>
+                                <input type="text" name="bairro" maxlength="255" class="form-control" required=""
+                                       id="id_bairro" placeholder="Bairro" th:field="*{endereco.bairro}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_cidade">Cidade</label>
+                                <select id="id_cidade" class="form-control" th:field="*{endereco.cidade}">
+                                    <option value="" selected>Escolher...</option>
+                                    <option th:each="d : ${cidades}" th:value="${d.id}" th:text="${d.nome}">...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_estado">Estado</label>
+                                <select id="id_estado" class="form-control" th:field="*{endereco.uf}">
+                                    <option value="" selected>Escolher...</option>
+                                    <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf.sigla}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_complemento">Complemento:</label>
+                                <input type="text" name="complemento" maxlength="255" class="form-control" required=""
+                                       id="id_complemento" placeholder="Complemento" th:field="*{endereco.complemento}">
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
+                            <a th:href="@{/instituicoes/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
                         </div>
                     </form>
                     <!-- [ Main Content ] end -->

@@ -1,11 +1,14 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Instituicao;
+import com.pbd.sertaoprotocolo.model.UF;
+import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.InstituicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +21,8 @@ public class InstituicaoController {
 
     @Autowired
     private InstituicaoService instituicaoService;
+    @Autowired
+    private CidadeService cidadeService;
 
     @GetMapping("/listar")
     public ModelAndView listInstituicao() {
@@ -30,6 +35,7 @@ public class InstituicaoController {
     @GetMapping("/new_instituicao")
     public ModelAndView createInstituicao(Instituicao instituicao) {
         ModelAndView view = new ModelAndView();
+        view.addObject("cidades", cidadeService.getCidades());
         view.setViewName("instituicao/instituicao_form");
         return view;
     }
@@ -47,9 +53,13 @@ public class InstituicaoController {
         } else {
             instituicaoService.createInstituicao(instituicao);
             modelAndView.addObject("successMessage", "Instituicao registrado com sucesso");
-            modelAndView.addObject("instituicao", new Instituicao());
-            modelAndView.setViewName("instituicao/instituicao_list");
+            modelAndView.setViewName("redirect:/instituicoes/listar");
         }
         return modelAndView;
+    }
+
+    @ModelAttribute("ufs")
+    public UF[] listUFS() {
+        return UF.values();
     }
 }

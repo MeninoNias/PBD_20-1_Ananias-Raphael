@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Setor;
 import com.pbd.sertaoprotocolo.repository.SetorRepository;
 import com.pbd.sertaoprotocolo.service.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SetorServiceImpl implements SetorService {
 
     @Autowired

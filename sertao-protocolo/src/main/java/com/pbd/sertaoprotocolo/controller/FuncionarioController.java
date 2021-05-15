@@ -60,8 +60,7 @@ public class FuncionarioController {
         } else {
             funcionarioService.createFuncionario(funcionario);
             modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
-            modelAndView.addObject("funcionario", new Funcionario());
-            modelAndView.setViewName("funcionario/listar");
+            modelAndView.setViewName("redirect:/funcionarios/listar");
         }
         return modelAndView;
     }

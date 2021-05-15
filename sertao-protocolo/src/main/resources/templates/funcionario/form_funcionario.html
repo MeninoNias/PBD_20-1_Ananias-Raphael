@@ -41,6 +41,13 @@
                                     <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}"></option>
                                 </select>
                             </div>
+                            <div class="form-group col-md-8">
+                                <label for="id_lotacao">Lotacao</label>
+                                <select id="id_lotacao" class="form-control" th:field="*{lotacao}">
+                                    <option value="" selected>Escolher...</option>
+                                    <option th:each="l : ${lotacoes}" th:value="${l.id}" th:text="${l.nome}"></option>
+                                </select>
+                            </div>
                         </div>
                         <h4 class="mb-0 pb-0">Contato</h4>
                         <hr class="mt-1 pt-0">

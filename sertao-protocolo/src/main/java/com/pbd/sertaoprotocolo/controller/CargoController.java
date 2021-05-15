@@ -48,8 +48,7 @@ public class CargoController {
         } else {
             cargoService.createCargo(cargo);
             modelAndView.addObject("successMessage", "Cargo registrado com sucesso");
-            modelAndView.addObject("cargo", new Cargo());
-            modelAndView.setViewName("cargo/cargo_list");
+            modelAndView.setViewName("redirect:/cargos/listar");
         }
         return modelAndView;
     }
