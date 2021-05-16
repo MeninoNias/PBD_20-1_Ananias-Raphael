@@ -7,10 +7,7 @@ import com.pbd.sertaoprotocolo.service.InstituicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -55,6 +52,30 @@ public class InstituicaoController {
             modelAndView.addObject("successMessage", "Instituicao registrado com sucesso");
             modelAndView.setViewName("redirect:/instituicoes/listar");
         }
+        return modelAndView;
+    }
+
+    @GetMapping("/update/{id}")
+    public ModelAndView createInstituicao(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Instituicao instituicao = instituicaoService.getInstituicao(id);
+        view.addObject("cidades", cidadeService.getCidades());
+        view.addObject("instituicao", instituicao);
+        view.setViewName("instituicao/instituicao_form");
+        return view;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateInstituicao(@Valid Instituicao instituicao, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+        instituicao.setNome(instituicao.getNome().toUpperCase());
+
+        if (result.hasErrors()) {
+            modelAndView.setViewName("instituicao/instituicao_form");
+        }
+        instituicaoService.createInstituicao(instituicao);
+        modelAndView.addObject("successMessage", "Instituicao registrado com sucesso");
+        modelAndView.setViewName("redirect:/instituicoes/listar");
         return modelAndView;
     }
 
