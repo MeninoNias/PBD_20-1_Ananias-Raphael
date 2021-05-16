@@ -26,15 +26,13 @@
                                 </thead>
                                 <tbody th:each="lot : ${lotacaoes}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{lot.id}"></h6></th>
-                                    <td class="align-middle text-center"><h6 th:text="*{lot.nome}"></h6></td>
-                                    <td class="align-middle text-center"><h6 th:text="*{lot.setor.nome}"></h6></td>
-                                    <td class="text-center align-middle">
+                                    <th scope="row" class="text-center py-1 align-middle"><h6 th:text="*{lot.id}"></h6></th>
+                                    <td class="align-middle text-center py-1"><h6 th:text="*{lot.nome}"></h6></td>
+                                    <td class="align-middle text-center py-1"><h6 th:text="${lot.setor != null } ? *{lot.setor.nome} : '-' "></h6></td>
+                                    <td class="text-center py-1 align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
+                                            <a th:href="@{/subsetores/update/{id} (id=${lot.id}) }" class="btn btn-success "><i
+                                                    class="feather icon-check-circle"></i></a>
                                         </div>
                                     </td>
                                 </tbody>
