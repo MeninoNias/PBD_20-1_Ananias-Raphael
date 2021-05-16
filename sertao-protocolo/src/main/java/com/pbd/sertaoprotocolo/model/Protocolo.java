@@ -26,9 +26,10 @@ public class Protocolo extends AbstractEntity<Long> {
     @NotEmpty(message = "*Por favor, preencha o campo assunto")
     private String assunto;
 
-    @Lob
+
     @Column(name = "descricao")
     @NotEmpty(message = "*Por favor, preencha o campo descrição")
+    @Lob
     private String descricao;
 
     @Column(name = "inicio")

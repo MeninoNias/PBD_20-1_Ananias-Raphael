@@ -28,10 +28,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE000000231</h6></th>
-                                    <td class="text-center align-middle"><h6>Cagar</h6></td>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
+                                <tr th:each="protocolo : ${protocolos}">
+                                    <th scope="row" class="text-center align-middle"><h6
+                                            th:text="*{protocolo.nProtocolo}"></h6></th>
+                                    <td class="text-center align-middle"><h6 th:text="*{protocolo.assunto}"></h6></td>
+                                    <td class="align-middle"><h6 th:text="*{protocolo.funcionario.nome}"></h6></td>
                                     <td class="text-center align-middle">
                                         <h6 class="text-muted"><i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>PENDENTE
                                         </h6>
@@ -45,113 +46,6 @@
                                         </div>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE000000222</h6></th>
-                                    <td class="text-center align-middle"><h6>Cagar de novo</h6></td>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted"><i class="fas fa-circle text-c-green f-10 m-r-15"></i>RESPONDIDO
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE20202</h6></th>
-                                    <td class="text-center align-middle"><h6>ATESTADO</h6></td>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
-
-
-                                            PENDENTE</h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE20203</h6></th>
-                                    <td class="text-center align-middle"><h6>ATESTADO</h6></td>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
-
-
-                                            PENDENTE</h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE20204</h6></th>
-                                    <td class="text-center align-middle"><h6>ATESTADO</h6></td>
-                                    <td class="align-middle"><h6>ANANIAS RAPHAEL DA SILVA NOBREGA</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
-
-
-                                            PENDENTE</h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6>ATE000000555</h6></th>
-                                    <td class="text-center align-middle"><h6>Cagar de novo</h6></td>
-                                    <td class="align-middle"><h6>João Pinto</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
-
-
-                                            PENDENTE</h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
                                 </tbody>
                             </table>
                         </div>

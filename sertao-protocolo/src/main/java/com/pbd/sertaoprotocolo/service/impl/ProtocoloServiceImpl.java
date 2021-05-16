@@ -1,10 +1,12 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.repository.ProtocoloRepository;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,12 @@ public class ProtocoloServiceImpl implements ProtocoloService {
     @Override
     public List<Protocolo> getProtocolos() {
         return protocoloRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public List<Protocolo> getProtocolosByFuncionarios(Funcionario funcionario) {
+        return protocoloRepository.findAllByFuncionarioId(funcionario.getId());
     }
 
     @Override
