@@ -14,26 +14,25 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Navegação</label>
                 </li>
-                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-                    class="nav-item ">
-                    <a href="/home" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                        <span class="pcoded-mtext">Home</span></a>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item ">
+                    <a href="/home" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-home"></i>
+                        </span>
+                        <span class="pcoded-mtext">Home</span>
+                    </a>
                 </li>
-                <!--                {#-->
-                <!--                <li class="nav-item pcoded-menu-caption">#}-->
-                <!--                    {# <label>UI Element</label>#}-->
-                <!--                    {#-->
-                <!--                </li>-->
-                <!--                #}-->
-                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item"
+                    th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                     <a class="nav-link" th:href="@{/funcionarios/listar}">
-                    <span class="pcoded-micon">
+                        <span class="pcoded-micon">
                             <i class="feather icon-users"></i>
                         </span>
                         <span class="pcoded-mtext">Funcionarios</span>
                     </a>
                 </li>
-                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item"
+                    th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                     <a class="nav-link" th:href="@{/protocolos/listar}">
                     <span class="pcoded-micon">
                             <i class="feather icon-file-text"></i>
@@ -41,8 +40,16 @@
                         <span class="pcoded-mtext">Protocolos</span>
                     </a>
                 </li>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                    <a class="nav-link" th:href="@{/protocolos/my_protocol}">
+                    <span class="pcoded-micon">
+                            <i class="feather icon-file-text"></i>
+                        </span>
+                        <span class="pcoded-mtext">Meus protocolos</span>
+                    </a>
+                </li>
                 <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
-                    class="nav-item pcoded-hasmenu">
+                    class="nav-item pcoded-hasmenu" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
                             class="feather icon-edit"></i></span><span class="pcoded-mtext">Gerenciar</span></a>
                     <ul class="pcoded-submenu">

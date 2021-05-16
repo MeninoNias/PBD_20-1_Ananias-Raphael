@@ -33,7 +33,7 @@ public class DummyData {
 //        userService.saveUser(user);
 
         Role role = new Role();
-        role.setRole("USER");
+        role.setRole("USER_ADMIN");
         roleRepository.save(role);
 
     }
