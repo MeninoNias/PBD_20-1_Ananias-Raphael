@@ -7,6 +7,7 @@ import java.util.List;
 public interface ProtocoloService {
 
     List<Protocolo> getProtocolos();
+    Long contAll();
     Protocolo getProtocolo(Long id);
     Protocolo createProtocolo(Protocolo protocolo);
     Protocolo updateProtocolo(Long id, Protocolo protocolo);

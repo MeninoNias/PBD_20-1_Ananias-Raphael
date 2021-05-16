@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.repository.ProtocoloRepository;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProtocoloServiceImpl implements ProtocoloService {
 
     @Autowired
@@ -15,6 +17,11 @@ public class ProtocoloServiceImpl implements ProtocoloService {
     @Override
     public List<Protocolo> getProtocolos() {
         return protocoloRepository.findAll();
+    }
+
+    @Override
+    public Long contAll() {
+        return protocoloRepository.countAllBy();
     }
 
     @Override

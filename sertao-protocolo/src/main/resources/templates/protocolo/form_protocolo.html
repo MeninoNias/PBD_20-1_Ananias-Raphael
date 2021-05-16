@@ -14,6 +14,14 @@
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
                             <div class="form-group col-md-12">
+                                <label for="id_lotacao">Categoria</label>
+                                <select id="id_lotacao" class="form-control" th:field="*{categoria}">
+                                    <option value="" selected>Escolher...</option>
+                                    <option th:each="c : ${categorias}" th:value="${c.id}"
+                                            th:text="${c.nome}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label for="id_assunto">Assunto:</label>
                                 <input type="text" name="assunto" maxlength="255" class="form-control" required=""
                                        id="id_assunto" placeholder="Nome" th:field="*{assunto}">
@@ -26,22 +34,7 @@
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <div class="form-group col-md-12">
-                                <label for="id_cargo">Cargo</label>
-                                <select id="id_cargo" class="form-control" th:field="*{cargo}">
-                                    <option value="" selected>Escolher...</option>
-                                    <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}"></option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="id_lotacao">Categoria</label>
-                                <select id="id_lotacao" class="form-control" th:field="*{categoria}">
-                                    <option value="" selected>Escolher...</option>
-                                    <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome}"></option>
-                                </select>
-                            </div>
-                        </div>
+
                         <div class="text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
                             <a th:href="@{/protocolos/my_protocol}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
