@@ -9,41 +9,47 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">Username</th>
-                                    <th class="text-center">E-mail</th>
-                                    <!--                                    <th class="text-center">Funcionario</th>-->
-                                    <th class="text-center">Ação</th>
-                                </tr>
-                                </thead>
-                                <tbody th:each="user : ${users}">
-                                <tr>
-                                    <th scope="row" class="text-center align-middle"><h6
-                                            th:text="*{user.userName}"></h6></th>
-                                    <td class="text-center align-middle"><h6 th:text="*{user.email}"></h6></td>
-                                    <!--                                    <td class="align-middle"><h6 th:text="*{user.funcionario.nome}"></h6></td>-->
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a th:href="@{/users/detail/{id} (id=${user.id}) }"
-                                               class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></a>
-                                            <a type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></a>
-                                        </div>
-                                    </td>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="d-flex bd-highlight mb-2">
+                        <h3 class="mr-auto bd-highlight">USUARIOS</h3>
+                        <!--                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/cargos/new_cargo}">Novo</a>-->
                     </div>
-                    <!-- [ Main Content ] end -->
                 </div>
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Username</th>
+                                <th class="text-center">E-mail</th>
+                                <!--                                    <th class="text-center">Funcionario</th>-->
+                                <th class="text-center">Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="user : ${users}">
+                            <tr>
+                                <th scope="row" class="text-center align-middle py-1">
+                                    <h6 class="mb-0" th:text="*{user.userName}"></h6>
+                                </th>
+                                <td class="text-left align-middle py-1">
+                                    <h6 class=" mb-0" th:text="*{user.email}"></h6>
+                                </td>
+                                <!--                                    <td class="align-middle py-1"><h6 th:text="*{user.funcionario.nome}"></h6></td>-->
+                                <td class="text-center align-middle py-1">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a th:href="@{/users/update/{id} (id=${user.id}) }" class="btn btn-success ">
+                                            <i class="feather icon-edit-2"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

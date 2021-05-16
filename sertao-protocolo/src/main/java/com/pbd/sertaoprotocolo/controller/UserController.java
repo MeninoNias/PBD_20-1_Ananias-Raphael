@@ -27,7 +27,7 @@ public class UserController {
         view.setViewName("user/listar_user");
         return view;
     }
-    @GetMapping("/detail/{id}")
+    @GetMapping("/update/{id}")
     public ModelAndView listUser(@PathVariable("id") long id){
         ModelAndView mv = new ModelAndView("user/user_update");
         User user = userService.findById(id);
