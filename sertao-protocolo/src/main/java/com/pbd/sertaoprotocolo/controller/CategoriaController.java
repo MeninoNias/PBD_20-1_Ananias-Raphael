@@ -1,11 +1,13 @@
 package com.pbd.sertaoprotocolo.controller;
 
+import com.pbd.sertaoprotocolo.model.Cargo;
 import com.pbd.sertaoprotocolo.model.CategoriaProtocolo;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,6 +51,28 @@ public class CategoriaController {
             modelAndView.addObject("successMessage", "Categoria registrado com sucesso");
             modelAndView.setViewName("redirect:/categorias/listar");
         }
+        return modelAndView;
+    }
+
+    @GetMapping("/update/{id}")
+    public ModelAndView createCategoriaProtocolo(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        CategoriaProtocolo categoriaProtocolo = categoriaService.getCategoriaProtocolo(id);
+        view.addObject("categoriaProtocolo", categoriaProtocolo);
+        view.setViewName("categoria_protocolo/categoria_form");
+        return view;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateCategoriaProtocolo(@Valid CategoriaProtocolo categoriaProtocolo, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+        categoriaProtocolo.setNome(categoriaProtocolo.getNome().toUpperCase());
+        if (result.hasErrors()) {
+            modelAndView.setViewName("categoria_protocolo/categoria_form");
+        }
+        categoriaService.createCategoriaProtocolo(categoriaProtocolo);
+        modelAndView.addObject("successMessage", "CategoriaProtocolo registrado com sucesso");
+        modelAndView.setViewName("redirect:/categorias/listar");
         return modelAndView;
     }
 }

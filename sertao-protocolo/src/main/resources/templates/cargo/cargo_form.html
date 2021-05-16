@@ -9,7 +9,8 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post" th:object="${cargo}" th:action="@{/cargos/new_cargo}">
+                    <form method="post" th:object="${cargo}"
+                          th:action="${cargo.id == null } ? @{/cargos/new_cargo} : @{/cargos/update}">
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
@@ -21,6 +22,7 @@
                             </div>
                         </div>
                         <div class="text-center mb-3">
+                            <input type="hidden" id="id" th:field="*{id}"/>
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
                             <a th:href="@{/cargos/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
                         </div>

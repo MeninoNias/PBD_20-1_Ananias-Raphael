@@ -27,12 +27,12 @@
                                 <tr>
                                     <th scope="row" class="text-center align-middle"><h6 th:text="*{c.id}"></h6></th>
                                     <td class="align-middle"><h6 th:text="*{c.nome}"></h6></td>
-                                    <td class="text-center align-middle">
+                                    <td class="text-right align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
+                                            <a th:href="@{/cargos/update/{id} (id=${c.id})}" class="btn btn-success "><i
+                                                    class="feather icon-edit-2"></i></a>
+<!--                                            <button type="button" class="btn btn-warning"><i-->
+<!--                                                    class="feather icon-printer"></i></button>-->
                                         </div>
                                     </td>
                                 </tbody>

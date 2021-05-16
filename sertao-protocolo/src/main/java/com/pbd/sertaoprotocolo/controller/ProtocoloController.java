@@ -37,8 +37,14 @@ public class ProtocoloController {
     public CategoriaProtocoloService categoriaProtocoloService;
 
     @GetMapping("/listar")
-    public String listarProtocolos() {
-        return "protocolo/listar_protocolo";
+    public ModelAndView listarProtocolos() {
+        ModelAndView view = new ModelAndView();
+
+        List<Protocolo> protocolos = protocoloService.getProtocolos();
+        view.addObject("protocolos", protocolos);
+
+        view.setViewName("protocolo/listar_protocolo");
+        return view;
     }
 
     @GetMapping("/my_protocol")
