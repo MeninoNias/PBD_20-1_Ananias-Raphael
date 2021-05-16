@@ -9,7 +9,7 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post" th:object="${setor}" th:action="@{/setores/new_setor}">
+                    <form method="post" th:object="${setor}" th:action="${setor.id == null } ? @{/setores/new_setor} : @{/setores/update}">
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
@@ -23,11 +23,13 @@
                                 <label for="id_estado">Insituicão</label>
                                 <select id="id_estado" class="form-control" th:field="*{instituicao}">
                                     <option value="" selected>Escolher...</option>
-                                    <option th:each="inst : ${instituicoes}" th:value="${inst.id}" th:text="${inst.nome}"></option>
+                                    <option th:each="inst : ${instituicoes}" th:value="${inst.id}"
+                                            th:text="${inst.nome}"></option>
                                 </select>
                             </div>
                         </div>
                         <div class="text-center my-3">
+                            <input type="hidden" id="id" th:field="*{id}"/>
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
                             <a th:href="@{/setores/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>
                         </div>

@@ -1,17 +1,12 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Setor;
-import com.pbd.sertaoprotocolo.model.UF;
-import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.InstituicaoService;
 import com.pbd.sertaoprotocolo.service.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -45,6 +40,30 @@ public class SetorController {
     public ModelAndView registerSetor(@Valid Setor setor, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         setor.setNome(setor.getNome().toUpperCase());
+        if (result.hasErrors()) {
+            modelAndView.setViewName("setor/setor_form");
+        }
+        setorService.createSetor(setor);
+        modelAndView.addObject("successMessage", "Setor registrado com sucesso");
+        modelAndView.setViewName("redirect:/setores/listar");
+        return modelAndView;
+    }
+
+    @GetMapping("/update/{id}")
+    public ModelAndView createSetor(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Setor setor = setorService.getSetor(id);
+        view.addObject("setor", setor);
+        view.addObject("instituicoes", instituicaoService.getInstituicaos());
+        view.setViewName("setor/setor_form");
+        return view;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateSetor(@Valid Setor setor, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+        setor.setNome(setor.getNome().toUpperCase());
+
         if (result.hasErrors()) {
             modelAndView.setViewName("setor/setor_form");
         }
