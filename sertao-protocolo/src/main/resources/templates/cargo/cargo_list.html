@@ -11,7 +11,8 @@
                     <!-- [ Main Content ] start -->
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">CARGO</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/cargos/new_cargo}">Novo</a>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
+                                                               th:href="@{/cargos/new_cargo}">Novo</a>
                         </div>
                     </div>
                     <div class="row">
@@ -29,10 +30,11 @@
                                     <td class="align-middle"><h6 th:text="*{c.nome}"></h6></td>
                                     <td class="text-right align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a th:href="@{/cargos/update/{id} (id=${c.id})}" class="btn btn-success "><i
-                                                    class="feather icon-edit-2"></i></a>
-<!--                                            <button type="button" class="btn btn-warning"><i-->
-<!--                                                    class="feather icon-printer"></i></button>-->
+                                            <a th:href="@{/cargos/update/{id} (id=${c.id})}" class="btn btn-success ">
+                                                <i class="feather icon-edit-2"></i>
+                                            </a>
+                                            <!--                                            <button type="button" class="btn btn-warning"><i-->
+                                            <!--                                                    class="feather icon-printer"></i></button>-->
                                         </div>
                                     </td>
                                 </tbody>

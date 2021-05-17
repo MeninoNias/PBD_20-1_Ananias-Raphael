@@ -8,6 +8,13 @@
             <!-- [ breadcrumb ] end -->
             <div class="main-body">
                 <div class="page-wrapper">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                         th:if="${success != null }">
+                        <span class="text-success" th:utext="${success}"></span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <!-- [ Main Content ] start -->
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">USUARIOS</h3>
@@ -41,8 +48,9 @@
                                         </a>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a th:href="@{/users/reset_user_password/{id} (id=${user.id}) }" class="btn btn-warning ">
-                                            <i class="feather icon-share"></i>
+                                        <a th:href="@{/users/reset_user_password/{id} (id=${user.id}) }"
+                                           class="btn btn-warning " data-toggle="tooltip" data-placement="top" title="Aqui você reseta a senha do usuario">
+                                            <i class="feather icon-shuffle"></i>
                                         </a>
                                     </div>
                                 </td>

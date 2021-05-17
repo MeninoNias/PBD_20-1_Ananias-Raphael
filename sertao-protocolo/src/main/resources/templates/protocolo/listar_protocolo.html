@@ -29,20 +29,31 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="protocolo : ${protocolos}">
-                                    <th scope="row" class="text-center align-middle"><h6
-                                            th:text="*{protocolo.nProtocolo}"></h6></th>
-                                    <td class="text-center align-middle"><h6 th:text="*{protocolo.assunto}"></h6></td>
-                                    <td class="align-middle"><h6 th:text="*{protocolo.funcionario.nome}"></h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted"><i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>PENDENTE
+                                    <th scope="row" class="text-center align-middle py-1">
+                                        <h6 class="mb-1"  th:text="*{protocolo.nProtocolo}"></h6></th>
+                                    <td class="text-center align-middle py-1">
+                                        <h6 class="mb-1"  th:text="*{protocolo.assunto}"></h6>
+                                    </td>
+                                    <td class="align-middle py-1">
+                                        <h6 class="mb-1"  th:text="*{protocolo.funcionario.nome}"></h6>
+                                    </td>
+                                    <td class="text-center align-middle py-1">
+                                        <h6  class="text-muted">
+                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
+                                            PENDENTE
                                         </h6>
                                     </td>
-                                    <td class="text-center align-middle">
+                                    <td class="text-center align-middle py-1">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
+                                            <a class="btn btn-success px-2 py-1">
+                                                <i class="feather icon-edit-2"></i>
+                                            </a>
+                                            <a class="btn btn-warning px-2 py-1">
+                                                <i class="feather icon-eye"></i>
+                                            </a>
+                                            <a class="btn btn-danger px-2 py-1">
+                                                <i class="feather icon-x-circle"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
         user.setRoles((Set<Role>) new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+
+    public User updateUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
 }

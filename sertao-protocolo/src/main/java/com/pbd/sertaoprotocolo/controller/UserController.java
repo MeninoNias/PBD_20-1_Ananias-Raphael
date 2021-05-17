@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/users")
@@ -21,14 +22,15 @@ public class UserController {
     private RoleRepository roleRepository;
 
     @GetMapping("/listar")
-    public ModelAndView listUser(){
+    public ModelAndView listUser() {
         ModelAndView view = new ModelAndView();
         view.addObject("users", userService.getUsers());
         view.setViewName("user/listar_user");
         return view;
     }
+
     @GetMapping("/update/{id}")
-    public ModelAndView listUser(@PathVariable("id") long id){
+    public ModelAndView listUser(@PathVariable("id") long id) {
         ModelAndView mv = new ModelAndView("user/user_update");
         User user = userService.findById(id);
         mv.addObject("user", user);
@@ -37,9 +39,17 @@ public class UserController {
     }
 
     @GetMapping("/reset_user_password/{id}")
-    public String resetPassword(@PathVariable("id") long id){
+    public String resetPassword(@PathVariable("id") long id, RedirectAttributes attr) {
         User user = userService.findById(id);
-        System.out.println(user.getFuncionario().getTelefone()+""+user.getFuncionario().getMatricula());
+
+        String s = user.getFuncionario().getNome();
+        String[] s1 = s.split(" ");
+        user.setPassword(s1[0].toLowerCase() + "" + user.getFuncionario().getMatricula());
+
+        if (userService.updateUser(user) != null) {
+            attr.addFlashAttribute("success", "Senha do " + user.getUserName() + " resatada com sucesso.");
+        }
+
         return "redirect:/users/listar";
     }
 
