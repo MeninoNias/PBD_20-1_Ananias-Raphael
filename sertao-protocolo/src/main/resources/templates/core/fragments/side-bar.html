@@ -14,8 +14,18 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Navegação</label>
                 </li>
-                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item ">
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item"
+                    th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                     <a href="/home" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-home"></i>
+                        </span>
+                        <span class="pcoded-mtext">Home</span>
+                    </a>
+                </li>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item"
+                    th:if="${#authorization.expression('hasAuthority(''USER'')')}">
+                    <a href="/home_user" class="nav-link ">
                         <span class="pcoded-micon">
                             <i class="feather icon-home"></i>
                         </span>

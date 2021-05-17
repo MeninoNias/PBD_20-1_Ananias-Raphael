@@ -26,146 +26,26 @@
                                     <th class="text-center">Ação</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-
+                                <tbody th:each="{a : ${avisos}">
                                 <tr>
-                                    <th scope="row" class="align-middle"><h6>Test01</h6></th>
+                                    <th scope="row" class="align-middle"><h6 th:text="*{a.titulo}"></h6></th>
                                     <th scope="row" class="text-center align-middle"><h6>25 de Outubro de 2020 às
                                         01:57</h6>
                                     </th>
                                     <td class="text-center align-middle"><h6>URGENTE</h6></td>
                                     <td class="text-center align-middle">
                                         <h6 class="text-muted">
-
                                             <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
                                             ATIVO
-
                                         </h6>
                                     </td>
                                     <td class="text-center align-middle">
-
                                         <button type="button" class="btn btn-danger"><i
                                                 class="feather icon-x-circle"></i>
                                         </button>
 
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <th scope="row" class="align-middle"><h6>Bem Vindo</h6></th>
-                                    <th scope="row" class="text-center align-middle"><h6>25 de Outubro de 2020 às
-                                        04:23</h6>
-                                    </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-                                            ATIVO
-
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-
-                                        <button type="button" class="btn btn-danger"><i
-                                                class="feather icon-x-circle"></i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="align-middle"><h6>Django</h6></th>
-                                    <th scope="row" class="text-center align-middle"><h6>30 de Outubro de 2020 às
-                                        15:48</h6>
-                                    </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-                                            ATIVO
-
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-
-                                        <button type="button" class="btn btn-danger"><i
-                                                class="feather icon-x-circle"></i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="align-middle"><h6>Test01</h6></th>
-                                    <th scope="row" class="text-center align-middle"><h6>30 de Outubro de 2020 às
-                                        16:07</h6>
-                                    </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-                                            ATIVO
-
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-
-                                        <button type="button" class="btn btn-danger"><i
-                                                class="feather icon-x-circle"></i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="align-middle"><h6>Test01</h6></th>
-                                    <th scope="row" class="text-center align-middle"><h6>30 de Outubro de 2020 às
-                                        16:08</h6>
-                                    </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
-                                            ATIVO
-
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-
-                                        <button type="button" class="btn btn-danger"><i
-                                                class="feather icon-x-circle"></i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row" class="align-middle"><h6>SEST: Ananias</h6></th>
-                                    <th scope="row" class="text-center align-middle"><h6>30 de Outubro de 2020 às
-                                        16:08</h6>
-                                    </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
-                                    <td class="text-center align-middle">
-                                        <h6 class="text-muted">
-
-                                            <i class="fas fa-circle text-c-red f-10 m-r-15"></i>
-                                            DESATIVADO
-
-                                        </h6>
-                                    </td>
-                                    <td class="text-center align-middle">
-
-                                        <button type="button" class="btn btn-success "><i
-                                                class="feather icon-check-circle"></i></button>
-
-
-                                    </td>
-                                </tr>
-
                                 </tbody>
                             </table>
                         </div>

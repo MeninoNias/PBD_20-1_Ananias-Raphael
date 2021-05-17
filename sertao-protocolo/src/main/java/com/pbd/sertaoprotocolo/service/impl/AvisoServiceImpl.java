@@ -4,9 +4,11 @@ import com.pbd.sertaoprotocolo.model.Aviso;
 import com.pbd.sertaoprotocolo.repository.AvisoRepository;
 import com.pbd.sertaoprotocolo.service.AvisoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AvisoServiceImpl implements AvisoService {
 
     @Autowired
