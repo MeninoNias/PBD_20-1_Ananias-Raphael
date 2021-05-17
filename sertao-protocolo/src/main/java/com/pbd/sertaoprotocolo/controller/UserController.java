@@ -36,4 +36,11 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/reset_user_password/{id}")
+    public String resetPassword(@PathVariable("id") long id){
+        User user = userService.findById(id);
+        System.out.println(user.getFuncionario().getTelefone()+""+user.getFuncionario().getMatricula());
+        return "redirect:/users/listar";
+    }
+
 }
