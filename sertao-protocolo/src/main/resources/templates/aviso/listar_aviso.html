@@ -21,18 +21,17 @@
                                 <tr>
                                     <th class="text-center">Aviso</th>
                                     <th class="text-center">Ultima atualização</th>
-                                    <th class="text-center">Prioridade</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Ação</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="{a : ${avisos}">
+                                <tbody th:each="a : ${avisos}">
                                 <tr>
-                                    <th scope="row" class="align-middle"><h6 th:text="*{a.titulo}"></h6></th>
+                                    <th scope="row" class="align-middle text-center"><h6 th:text="*{a.titulo}"></h6>
+                                    </th>
                                     <th scope="row" class="text-center align-middle"><h6>25 de Outubro de 2020 às
                                         01:57</h6>
                                     </th>
-                                    <td class="text-center align-middle"><h6>URGENTE</h6></td>
                                     <td class="text-center align-middle">
                                         <h6 class="text-muted">
                                             <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
@@ -40,10 +39,14 @@
                                         </h6>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <button type="button" class="btn btn-danger"><i
-                                                class="feather icon-x-circle"></i>
-                                        </button>
-
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a th:href="@{/avisos/update/{id} (id=${a.id})}" class="btn btn-success">
+                                                <i class="feather icon-edit-2"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger">
+                                                <i class="feather icon-x-circle"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>

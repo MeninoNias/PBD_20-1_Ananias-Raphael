@@ -18,9 +18,8 @@
                                     multiple="multiple" th:field="*{funcionarios}">
                                 <option th:each="funcionario : ${funcionariosSelect}"
                                         th:value="${{funcionario}}"
-                                        th:text="${funcionario.nome}">
-<!--                                        th:selected="${servisAttribute.funcionariosSelect.contains(funcionario)}">-->
-                                    <!--                                        th:attr="showselected=(${func.id} == *{funcionarios.id})">-->
+                                        th:text="${funcionario.nome}"
+                                        th:selected="${funcionarios != null } ? ${servisAttribute.funcionarios.contains(funcionario)}">
                                 </option>
                             </select>
 

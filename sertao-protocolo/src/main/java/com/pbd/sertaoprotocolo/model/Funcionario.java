@@ -2,17 +2,17 @@ package com.pbd.sertaoprotocolo.model;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario extends AbstractEntity<Long> {
