@@ -1,5 +1,15 @@
 ### SERTÃO PROTOCOLO
 
+##### TECNOLOGIAS USADAS
+
+<ul>
+	<li>IDE: IntelliJ IDEA</li>
+	<li>SGBD: PostgreSQL</li>
+	<li>Java Version (11)</li>
+	<li>Framework: Spring (2.4.4)</li>
+	<li>Template Engine: Thymeleaf </li>
+</ul>
+
 Essa aplicação tem como objetivo facilitar o acompanhamento e abertura de protocolos seja no setor público ou privado por parte do funcionário ou servidor, tendo uma melhor visualização, segurança, transparência e tempo de resposta reduzido.
 
 A aplicação conta com a área dos usuários responsáveis, onde os mesmos administram os protocolos criados pelos usuários funcionários, onde ele poderá visualizar, editar e responder os protocolos dos seus funcionários para as respectivas solicitações, efetuando as devidas respostas  e ou os devidos procedimentos acerca desses pedidos, poderá efetuar o cadastro de novos funcionários, editar informações, visualizar informações e fazer se necessário o desligamento do funcionário, isto claro se o mesmo tiver as devidas permissões, que serão abordadas mais à frente. O sistema ainda pode emitir avisos ou alertas para todos os funcionários ou para um grupo de funcionário em específico e ou  até mesmo para um funcionário em específico.
