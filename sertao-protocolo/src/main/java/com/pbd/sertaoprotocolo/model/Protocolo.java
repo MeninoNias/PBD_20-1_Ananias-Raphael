@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -51,5 +52,8 @@ public class Protocolo extends AbstractEntity<Long> {
     @Column(nullable = false, length = 2)
     @Enumerated(EnumType.STRING)
     private StatusProtocolo status = StatusProtocolo.PE;
+
+    @OneToMany(mappedBy = "protocolo", fetch = FetchType.EAGER)
+    private List<RespostaProtocolo> respostaProtocolos;
 
 }

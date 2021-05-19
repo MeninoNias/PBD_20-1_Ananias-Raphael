@@ -5,6 +5,7 @@ import com.pbd.sertaoprotocolo.repository.RespostaProtocoloRepository;
 import com.pbd.sertaoprotocolo.service.RespostaProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,12 @@ public class RespostaProtocoloServiceImpl implements RespostaProtocoloService {
     @Override
     public List<RespostaProtocolo> getRespostaProtocolos() {
         return repostaProtocoloRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public RespostaProtocolo findTopByProtocoloId(Long id) {
+        return repostaProtocoloRepository.findTopByProtocoloId(id);
     }
 
     @Override

@@ -54,11 +54,17 @@
                                                th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                                                 <i class="feather icon-shuffle"></i>
                                             </a>
+                                            <!--                                            <a class="btn btn-secondary px-2 py-1"-->
+                                            <!--                                               th:href="@{/resposta_protocolo/update/{id} (id=${protocolo.id})}"-->
+                                            <!--                                               th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">-->
+                                            <!--                                                <i class="feather icon-edit-2"></i>-->
+                                            <!--                                            </a>-->
                                             <a class="btn btn-warning px-2 py-1"
+                                               th:href="@{/resposta_protocolo/detail/{id} (id=${protocolo.id})}"
                                                th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                                                 <i class="feather icon-eye"></i>
                                             </a>
-                                            <a class="btn btn-danger px-2 py-1" href="#"
+                                            <a class="btn btn-danger px-2 py-1"
                                                th:if="${#authorization.expression('hasAuthority(''USER'')')}">
                                                 <i class="feather icon-x-circle"></i>
                                             </a>

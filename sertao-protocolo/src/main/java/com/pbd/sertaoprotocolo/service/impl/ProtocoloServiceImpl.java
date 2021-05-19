@@ -33,6 +33,7 @@ public class ProtocoloServiceImpl implements ProtocoloService {
     }
 
     @Override
+    @Transactional
     public Protocolo getProtocolo(Long id) {
         return protocoloRepository.findById(id).get();
     }

@@ -8,6 +8,8 @@ public interface RespostaProtocoloService {
 
     List<RespostaProtocolo> getRespostaProtocolos();
 
+    RespostaProtocolo findTopByProtocoloId(Long id);
+
     RespostaProtocolo getRespostaProtocolo(Long id);
 
     RespostaProtocolo createRespostaProtocolo(RespostaProtocolo aviso);

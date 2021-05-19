@@ -106,8 +106,8 @@ public class RespostaProtocoloController {
     @GetMapping("/detail/{id}")
     public ModelAndView detailRespostaProtocolo(@PathVariable("id") Long id) {
         ModelAndView view = new ModelAndView();
-        RespostaProtocolo resposta_protocolo = resposta_protocoloService.getRespostaProtocolo(id);
-        view.addObject("resposta_protocolo", resposta_protocolo);
+        Protocolo protocolo = protocoloService.getProtocolo(id);
+        view.addObject("protocolo", protocolo);
         view.setViewName("resposta_protocolo/detail_resposta_protocolo");
         return view;
     }

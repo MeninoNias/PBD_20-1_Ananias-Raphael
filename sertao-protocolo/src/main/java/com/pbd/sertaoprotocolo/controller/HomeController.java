@@ -32,13 +32,7 @@ public class HomeController {
     @GetMapping("/home")
     public ModelAndView home(HttpSession session){
         ModelAndView view = new ModelAndView();
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-
-        session.setAttribute("user", user);
         view.setViewName("home");
-
         return view;
     }
 
@@ -50,7 +44,7 @@ public class HomeController {
         User user = userService.findUserByUserName(auth.getName());
 
         List<Aviso> avisos = avisoService.getAvisosFuncionarios(user.getFuncionario());
-        session.setAttribute("user", user);
+
         view.addObject("avisos", avisos);
         view.setViewName("home_user");
 
