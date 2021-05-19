@@ -1,14 +1,14 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
 import com.pbd.sertaoprotocolo.model.RespostaProtocolo;
-import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.repository.RespostaProtocoloRepository;
 import com.pbd.sertaoprotocolo.service.RespostaProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RespostaProtocoloServiceImpl implements RespostaProtocoloService {
 
     @Autowired

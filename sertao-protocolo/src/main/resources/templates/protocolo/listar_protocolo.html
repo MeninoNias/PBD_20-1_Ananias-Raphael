@@ -30,28 +30,36 @@
                                 <tbody>
                                 <tr th:each="protocolo : ${protocolos}">
                                     <th scope="row" class="text-center align-middle py-1">
-                                        <h6 class="mb-1"  th:text="*{protocolo.nProtocolo}"></h6></th>
+                                        <h6 class="mb-1" th:text="*{protocolo.nProtocolo}"></h6></th>
                                     <td class="text-center align-middle py-1">
-                                        <h6 class="mb-1"  th:text="*{protocolo.assunto}"></h6>
+                                        <h6 class="mb-1" th:text="*{protocolo.assunto}"></h6>
                                     </td>
                                     <td class="align-middle py-1">
-                                        <h6 class="mb-1"  th:text="*{protocolo.funcionario.nome}"></h6>
+                                        <h6 class="mb-1" th:text="*{protocolo.funcionario.nome}"></h6>
                                     </td>
                                     <td class="text-center align-middle py-1">
-                                        <h6  class="text-muted">
+                                        <h6 class="text-muted">
                                             <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
                                             PENDENTE
                                         </h6>
                                     </td>
                                     <td class="text-center align-middle py-1">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a class="btn btn-success px-2 py-1">
+                                        <div class="btn-group" role="group" aria-label="Basic example" href="#">
+                                            <a class="btn btn-success px-2 py-1"
+                                               th:if="${#authorization.expression('hasAuthority(''USER'')')}">
                                                 <i class="feather icon-edit-2"></i>
                                             </a>
-                                            <a class="btn btn-warning px-2 py-1">
+                                            <a class="btn btn-success px-2 py-1"
+                                               th:href="@{/resposta_protocolo/new_resposta_protocolo/{id_protocolo} (id_protocolo=${protocolo.id})}"
+                                               th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
+                                                <i class="feather icon-shuffle"></i>
+                                            </a>
+                                            <a class="btn btn-warning px-2 py-1"
+                                               th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                                                 <i class="feather icon-eye"></i>
                                             </a>
-                                            <a class="btn btn-danger px-2 py-1">
+                                            <a class="btn btn-danger px-2 py-1" href="#"
+                                               th:if="${#authorization.expression('hasAuthority(''USER'')')}">
                                                 <i class="feather icon-x-circle"></i>
                                             </a>
                                         </div>

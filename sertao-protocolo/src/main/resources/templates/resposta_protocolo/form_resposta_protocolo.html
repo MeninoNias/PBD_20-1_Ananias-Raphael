@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content pt-0">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form method="post" th:object="${respostaProtocolo}"
+                          th:action="@{/resposta_protocolo/new_resposta_protocolo/{id_protocolo} (id_protocolo=${protocolo.id})}">
+                        <fieldset disabled>
+                            <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
+                            <hr class="mt-1 pt-0">
+                            <div class="form-row align-items-end">
+                                <div class="form-group col-md-12">
+                                    <label for="id_categoria">Categoria</label>
+                                    <input type="text" name="categoria" maxlength="255" class="form-control" required=""
+                                           id="id_categoria" placeholder="Nome" th:value="${protocolo.categoria.nome}">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="id_assunto">Assunto:</label>
+                                    <input type="text" name="assunto" maxlength="255" class="form-control" required=""
+                                           id="id_assunto" placeholder="Nome" th:value="${protocolo.assunto}">
+                                    <div class="text-danger font-weight-bold"></div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="id_descricao">Descrição:</label>
+                                    <textarea class="form-control" id="id_descricao" rows="5"
+                                              th:text="${protocolo.descricao}"></textarea>
+                                    <div class="text-danger font-weight-bold"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-md-12">
+                                <label for="id_resposta">Resposta:</label>
+                                <textarea class="form-control" id="id_resposta" rows="5"
+                                          th:field="*{resposta}"></textarea>
+                                <div class="text-danger font-weight-bold"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
+                            <a th:href="@{/protocolos/my_protocol}" class="btn btn-secondary btn-lg  w-25"
+                               th:if="${#authorization.expression('hasAuthority(''USER'')')}">Cancelar</a>
+                            <a th:href="@{/protocolos/listar}" class="btn btn-secondary btn-lg  w-25"
+                               th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">Cancelar</a>
+                        </div>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
