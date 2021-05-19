@@ -1,9 +1,13 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Aviso;
+import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.AvisoService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import com.pbd.sertaoprotocolo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/avisos")
@@ -22,15 +27,33 @@ public class AvisoController {
     private FuncionarioService funcionarioService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private AvisoService avisoService;
 
     @GetMapping("/listar")
-    public ModelAndView listarAviso(Aviso aviso) {
+    public ModelAndView listarAvisos(Aviso aviso) {
         ModelAndView view = new ModelAndView();
         view.addObject("avisos", avisoService.getAvisos());
         view.setViewName("aviso/listar_aviso");
         return view;
     }
+
+    @GetMapping("/my_avisos")
+    public ModelAndView listarMeusAvisos(Aviso aviso) {
+        ModelAndView view = new ModelAndView();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+
+        List<Aviso> avisos = avisoService.getAvisosFuncionarios(user.getFuncionario());
+
+        view.addObject("avisos", avisos);
+        view.setViewName("aviso/listar_aviso");
+        return view;
+    }
+
 
     @GetMapping("/new_aviso")
     public ModelAndView createAviso(Aviso aviso) {
