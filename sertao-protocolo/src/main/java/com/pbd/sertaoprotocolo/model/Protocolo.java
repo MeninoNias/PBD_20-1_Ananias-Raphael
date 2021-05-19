@@ -48,4 +48,8 @@ public class Protocolo extends AbstractEntity<Long> {
     @JoinColumn(name = "id_categoria_fk")
     private CategoriaProtocolo categoria;
 
+    @Column(nullable = false, length = 2)
+    @Enumerated(EnumType.STRING)
+    private StatusProtocolo status = StatusProtocolo.PE;
+
 }
