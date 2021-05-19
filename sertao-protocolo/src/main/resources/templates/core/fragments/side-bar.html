@@ -58,6 +58,14 @@
                         <span class="pcoded-mtext">Meus protocolos</span>
                     </a>
                 </li>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                    <a class="nav-link" th:href="@{/avisos/my_avisos}">
+                    <span class="pcoded-micon">
+                            <i class="feather icon-file-text"></i>
+                        </span>
+                        <span class="pcoded-mtext">Meus Avisos</span>
+                    </a>
+                </li>
                 <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
                     class="nav-item pcoded-hasmenu" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
@@ -74,15 +82,15 @@
                 </li>
 
 
-                <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe"
-                    class="nav-item pcoded-hasmenu">
-                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span
-                            class="pcoded-mtext">User</span></a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a href="/" class="">Perfil</a></li>
-                        <li class=""><a th:href="@{/logout}" class="">Logout</a></li>
-                    </ul>
-                </li>
+<!--                <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe"-->
+<!--                    class="nav-item pcoded-hasmenu">-->
+<!--                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span-->
+<!--                            class="pcoded-mtext">User</span></a>-->
+<!--                    <ul class="pcoded-submenu">-->
+<!--                        <li class=""><a href="/" class="">Perfil</a></li>-->
+<!--                        <li class=""><a th:href="@{/logout}" class="">Logout</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
             </ul>
         </div>
     </div>

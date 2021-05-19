@@ -30,8 +30,16 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(){
-        return "home";
+    public ModelAndView home(HttpSession session){
+        ModelAndView view = new ModelAndView();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+
+        session.setAttribute("user", user);
+        view.setViewName("home");
+
+        return view;
     }
 
     @GetMapping("/home_user")
