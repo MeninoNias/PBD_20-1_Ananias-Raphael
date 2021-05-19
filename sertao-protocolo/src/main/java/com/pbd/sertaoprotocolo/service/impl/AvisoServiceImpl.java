@@ -38,10 +38,8 @@ public class AvisoServiceImpl implements AvisoService {
     }
 
     @Override
-    public Aviso updateAviso(Long id, Aviso aviso) {
-        Aviso c = avisoRepository.findById(id).get();
-
-        return c;
+    public Aviso updateAviso(Aviso aviso) {
+        return avisoRepository.save(aviso);
     }
 
     @Override

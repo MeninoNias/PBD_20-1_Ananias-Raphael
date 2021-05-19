@@ -42,7 +42,7 @@
                                     </td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="#" class="btn btn-warning">
+                                            <a th:href="@{/avisos/detail/{id} (id=${a.id})}" class="btn btn-warning">
                                                 <i class="feather icon-eye"></i>
                                             </a>
                                             <a th:href="@{/avisos/update/{id} (id=${a.id})}" class="btn btn-success"

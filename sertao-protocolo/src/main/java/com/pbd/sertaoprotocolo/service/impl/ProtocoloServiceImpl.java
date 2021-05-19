@@ -43,10 +43,8 @@ public class ProtocoloServiceImpl implements ProtocoloService {
     }
 
     @Override
-    public Protocolo updateProtocolo(Long id, Protocolo protocolo) {
-        Protocolo c = protocoloRepository.findById(id).get();
-
-        return c;
+    public Protocolo updateProtocolo(Protocolo protocolo) {
+        return protocoloRepository.save(protocolo);
     }
 
     @Override

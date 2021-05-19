@@ -35,10 +35,8 @@ public class InstituicaoServiceimpl implements InstituicaoService {
     }
 
     @Override
-    public Instituicao updateInstituicao(Long id, Instituicao instituicao) {
-        Instituicao c = instituicaoRepository.findById(id).get();
-        //UpdadeInstituicao
-        return c;
+    public Instituicao updateInstituicao(Instituicao instituicao) {
+        return instituicaoRepository.save(instituicao);
     }
 
     @Override

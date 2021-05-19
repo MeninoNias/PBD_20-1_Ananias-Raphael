@@ -35,11 +35,8 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
-    public Cargo updateCargo(Long id, Cargo cargo) {
-        Cargo c = cargoRepository.findById(id).get();
-        c.setNome(cargo.getNome());
-        cargoRepository.save(c);
-        return c;
+    public Cargo updateCargo(Cargo cargo) {
+        return cargoRepository.save(cargo);
     }
 
     @Override

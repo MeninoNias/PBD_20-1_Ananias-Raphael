@@ -97,7 +97,8 @@
                                                     </td>
                                                     <td>
                                                         <h6 class="mb-1" th:text="*{aviso.titulo}"></h6>
-                                                        <p class="m-0" th:text="*{aviso.descricao}">Lorem Ipsum is simply…</p>
+<!--                                                        <p class="m-0" th:text="*{aviso.descricao}">Lorem Ipsum is-->
+<!--                                                            simply…</p>-->
                                                     </td>
                                                     <td>
                                                         <h6 class="text-muted">
@@ -106,7 +107,7 @@
                                                         </h6>
                                                     </td>
                                                     <td>
-                                                        <a href="#!"
+                                                        <a th:href="@{/avisos/detail/{id} (id=${aviso.id})}"
                                                            class="label theme-bg text-white f-12">Vizualizar</a>
                                                     </td>
                                                 </tr>

@@ -28,10 +28,8 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public Endereco updateEndereco(Long id, Endereco endereco) {
-        Endereco c = enderecoRepository.findById(id).get();
-        //UpdadeEndereco
-        return c;
+    public Endereco updateEndereco(Endereco endereco) {
+        return enderecoRepository.save(endereco);
     }
 
     @Override

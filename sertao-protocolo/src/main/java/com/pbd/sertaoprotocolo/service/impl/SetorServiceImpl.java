@@ -30,10 +30,8 @@ public class SetorServiceImpl implements SetorService {
     }
 
     @Override
-    public Setor updateSetor(Long id, Setor setor) {
-        Setor c = setorRepository.findById(id).get();
-        //UpdadeSetor
-        return c;
+    public Setor updateSetor(Setor setor) {
+        return setorRepository.save(setor);
     }
 
     @Override

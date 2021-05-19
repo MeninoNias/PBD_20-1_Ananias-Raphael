@@ -35,10 +35,8 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
 
     @Override
-    public Funcionario updateFuncionario(Long id, Funcionario funcionario) {
-        Funcionario c = funcionarioRepository.findById(id).get();
-
-        return c;
+    public Funcionario updateFuncionario(Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
     }
 
     @Override

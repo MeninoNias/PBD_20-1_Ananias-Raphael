@@ -35,9 +35,8 @@ public class CategoriaProtocoloServiceImpl implements CategoriaProtocoloService 
     }
 
     @Override
-    public CategoriaProtocolo updateCategoriaProtocolo(Long id, CategoriaProtocolo categoria) {
-        CategoriaProtocolo c = categoriaRepository.findById(id).get();
-        return c;
+    public CategoriaProtocolo updateCategoriaProtocolo(CategoriaProtocolo categoria) {
+        return categoriaRepository.save(categoria);
     }
 
     @Override

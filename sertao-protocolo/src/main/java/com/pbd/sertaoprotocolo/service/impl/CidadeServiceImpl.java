@@ -30,11 +30,8 @@ public class CidadeServiceImpl implements CidadeService {
     }
 
     @Override
-    public Cidade updateCidade(Long id, Cidade cidade) {
-        Cidade c = cidadeRepository.findById(id).get();
-        c.setNome(cidade.getNome());
-        cidadeRepository.save(c);
-        return c;
+    public Cidade updateCidade( Cidade cidade) {
+        return cidadeRepository.save(cidade);
     }
 
     @Override

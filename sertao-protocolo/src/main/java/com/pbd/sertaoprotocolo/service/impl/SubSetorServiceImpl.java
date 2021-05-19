@@ -30,10 +30,8 @@ public class SubSetorServiceImpl implements SubSetorService {
     }
 
     @Override
-    public SubSetor updateSubSetor(Long id, SubSetor subSetor) {
-        SubSetor c = subSetorRepository.findById(id).get();
-        //UpdadeSubSetor
-        return c;
+    public SubSetor updateSubSetor(SubSetor subSetor) {
+        return subSetorRepository.save(subSetor);
     }
 
     @Override

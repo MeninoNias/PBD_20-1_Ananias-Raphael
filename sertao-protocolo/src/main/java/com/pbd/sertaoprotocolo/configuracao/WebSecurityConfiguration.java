@@ -53,6 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/protocolos/my_protocol/**").hasAnyAuthority("ADMIN", "USER_ADMIN", "USER")
                 .antMatchers("/protocolos/new_protocolo/**").hasAnyAuthority("ADMIN", "USER_ADMIN", "USER")
                 .antMatchers("/avisos/my_avisos/**").hasAnyAuthority("ADMIN", "USER_ADMIN", "USER")
+                .antMatchers("/avisos/detail/**").hasAnyAuthority("ADMIN", "USER_ADMIN", "USER")
                 .antMatchers("/avisos/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()

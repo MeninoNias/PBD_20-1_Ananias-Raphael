@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="container">
+                        <article>
+                            <h4 class="card-title" th:text="${aviso.titulo}"></h4>
+                            <section>
+                                <p class="cart-text" th:utext="${aviso.descricao}"></p>
+                            </section>
+                        </article>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

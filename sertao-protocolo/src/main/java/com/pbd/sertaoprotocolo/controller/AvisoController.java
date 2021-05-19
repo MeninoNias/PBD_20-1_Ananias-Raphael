@@ -99,4 +99,13 @@ public class AvisoController {
         return modelAndView;
     }
 
+    @GetMapping("/detail/{id}")
+    public ModelAndView detailAviso(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Aviso aviso = avisoService.getAviso(id);
+        view.addObject("aviso", aviso);
+        view.setViewName("aviso/detail_aviso");
+        return view;
+    }
+
 }
