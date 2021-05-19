@@ -1,5 +1,22 @@
 ### SERTÃO PROTOCOLO
 
+login e senha dos usuarios:
+
+##### ADMIN
+- login: berg
+- senha: berg123
+
+##### USER_ADMIN
+- login: leonardo
+- senha: leo123
+
+##### USER
+- login: adson
+- senha: adson123
+- login: pedro
+- senha: pedro123
+
+
 ##### TECNOLOGIAS USADAS
 
 <ul>
@@ -9,6 +26,18 @@
 	<li>Framework: Spring (2.4.4)</li>
 	<li>Template Engine: Thymeleaf </li>
 </ul>
+
+##### INFORMAÇÕES ADICIONAIS
+
+Caso necessario alterar a porta ou o nome do banco de dados, ou o usuario ou a senha;
+
+resources/application.properties
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/sertao_protocolo
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+
+#### DESCRIÇÃO
 
 Essa aplicação tem como objetivo facilitar o acompanhamento e abertura de protocolos seja no setor público ou privado por parte do funcionário ou servidor, tendo uma melhor visualização, segurança, transparência e tempo de resposta reduzido.
 
