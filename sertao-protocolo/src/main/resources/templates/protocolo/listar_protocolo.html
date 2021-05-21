@@ -60,8 +60,7 @@
                                             <!--                                                <i class="feather icon-edit-2"></i>-->
                                             <!--                                            </a>-->
                                             <a class="btn btn-warning px-2 py-1"
-                                               th:href="@{/resposta_protocolo/detail/{id} (id=${protocolo.id})}"
-                                               th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
+                                               th:href="@{/resposta_protocolo/detail/{id} (id=${protocolo.id})}">
                                                 <i class="feather icon-eye"></i>
                                             </a>
                                             <a class="btn btn-danger px-2 py-1"

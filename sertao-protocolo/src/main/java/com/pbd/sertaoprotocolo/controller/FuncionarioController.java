@@ -1,24 +1,21 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.model.Cargo;
-import com.pbd.sertaoprotocolo.model.Cidade;
-import com.pbd.sertaoprotocolo.model.Funcionario;
-import com.pbd.sertaoprotocolo.model.UF;
+import com.pbd.sertaoprotocolo.model.*;
 import com.pbd.sertaoprotocolo.service.CargoService;
 import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
 import com.pbd.sertaoprotocolo.service.SubSetorService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -73,8 +70,30 @@ public class FuncionarioController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateFuncionario(@Valid Funcionario funcionario, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (result.hasErrors()) {
+            modelAndView.setViewName("funcionario/form_funcionario");
+        }
+        funcionarioService.createFuncionario(funcionario);
+        modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
+        modelAndView.setViewName("redirect:/funcionarios/listar");
+        return modelAndView;
+    }
+
+    @GetMapping("/detail/{id}")
+    public ModelAndView detailFuncionario(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Funcionario funcionario = funcionarioService.getFuncionario(id);
+        view.addObject("funcionario", funcionario);
+        view.setViewName("funcionario/detail_funcionario");
+        return view;
+    }
+
     @ModelAttribute("ufs")
-    public UF[] listUFS(){
+    public UF[] listUFS() {
         return UF.values();
     }
 

@@ -11,7 +11,8 @@
                     <!-- [ Main Content ] start -->
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">FUNCIONARIOS</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/funcionarios/new_func}">Novo</a>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
+                                                               th:href="@{/funcionarios/new_func}">Novo</a>
                         </div>
                     </div>
                     <div class="row">
@@ -28,16 +29,28 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="func : ${funcionarios}">
-                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{func.matricula}"></h6></th>
-                                    <td class="align-middle"><h6 th:text="*{func.nome}"></h6></td>
-                                    <td class="text-center align-middle"><h6 th:text="*{func.cargo.nome}"></h6></td>
-                                    <td class="text-center align-middle"><h6 th:text="*{func.lotacao.nome}"></h6></td>
+                                    <th scope="row" class="text-center align-middle">
+                                        <h6
+                                                th:text="*{func.matricula}">
+                                        </h6>
+                                    </th>
+                                    <td class="align-middle">
+                                        <h6 th:text="*{func.nome}"></h6>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <h6 th:text="*{func.cargo.nome}"></h6>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <h6 th:text="*{func.lotacao.nome}"></h6>
+                                    </td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success "><i
-                                                    class="feather icon-check-circle"></i></button>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="feather icon-printer"></i></button>
+                                            <a class="btn btn-success ">
+                                                <i class="feather icon-edit-2"></i>
+                                            </a>
+                                            <a class="btn btn-warning">
+                                                <i class="feather icon-eye"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tbody>
