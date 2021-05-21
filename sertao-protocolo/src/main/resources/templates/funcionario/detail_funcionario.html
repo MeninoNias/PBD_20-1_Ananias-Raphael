@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html layout:decorate="~{core/base}">
 <body>
+<div layout:fragment="main">
+    <div class="pcoded-content pt-0">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <form method="get">
+                        <fieldset disabled>
+                            <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
+                            <hr class="mt-1 pt-0">
+                            <div class="form-row align-items-end">
+                                <div class="form-group col-md-10">
+                                    <label for="id_nome">Nome:</label>
+                                    <input type="text" name="nome" maxlength="255" class="form-control" required=""
+                                           id="id_nome" placeholder="Nome" th:value="${funcionario.nome}">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="id_matricula">Matricula:</label>
+                                    <input type="number" name="matricula" class="form-control" required=""
+                                           id="id_matricula" placeholder="0000" th:value="${funcionario.matricula}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
 
+                                <div class="form-group col-md-12">
+                                    <label for="id_cargo">Cargo</label>
+                                    <input type="text" name="cargo" class="form-control" required=""
+                                           id="id_cargo" th:value="${funcionario.cargo.nome}">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="id_lotacao">Lotacao</label>
+                                    <input type="text" name="lotacao" class="form-control" required=""
+                                           id="id_lotacao" placeholder="0000" th:value="${funcionario.lotacao.nome}">
+                                </div>
+                            </div>
+                            <h4 class="mb-0 pb-0">Contato</h4>
+                            <hr class="mt-1 pt-0">
+                            <div class="row form-group">
+                                <div class="form-group col-md-4">
+                                    <label for="id_telefone">Telefone:</label>
+                                    <input type="text" name="telefone" maxlength="11" minlength="10"
+                                           class="form-control tel-mask" required=""
+                                           id="id_telefone" placeholder="(99) 9 9999-9999"
+                                           th:value="${funcionario.telefone}">
+                                </div>
+                            </div>
+
+                            <h4 class="mb-0 pb-0">Endereço</h4>
+                            <hr class="mt-1 pt-0">
+                            <div class="form-row align-items-end">
+                                <div class="form-group col-md-2">
+                                    <label for="id_cep">CEP:</label>
+                                    <input type="text" name="cep" class="form-control" required=""
+                                           id="id_cep" th:value="${funcionario.endereco.cep}">
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="id_rua">Rua:</label>
+                                    <input type="text" name="rua" maxlength="255" class="form-control" required=""
+                                           id="id_rua" th:value="${funcionario.endereco.logradouro}">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="id_numero">Numero:</label>
+                                    <input type="number" name="numero" class="form-control" required=""
+                                           id="id_numero" th:value="${funcionario.endereco.numero}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="id_bairro">Bairro:</label>
+                                    <input type="text" name="bairro" maxlength="255" class="form-control" required=""
+                                           id="id_bairro" th:value="${funcionario.endereco.bairro}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="id_cidade">Cidade</label>
+                                    <input type="text" name="bairro" maxlength="255" class="form-control" required=""
+                                           id="id_cidade" th:value="${funcionario.endereco.cidade.nome}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="id_estado">Estado</label>
+                                    <input type="text" name="estado" maxlength="255" class="form-control" required=""
+                                           id="id_estado" th:value="${funcionario.endereco.uf}">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="id_complemento">Complemento:</label>
+                                    <input type="text" name="complemento" maxlength="255" class="form-control"
+                                           required=""
+                                           id="id_complemento" th:value="${funcionario.endereco.complemento}">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="text-right mb-3">
+                            <a th:href="@{/funcionarios/listar}" class="btn btn-secondary btn-lg  w-25">Voltar</a>
+                        </div>
+                    </form>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
