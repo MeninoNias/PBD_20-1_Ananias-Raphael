@@ -70,6 +70,18 @@ public class FuncionarioController {
         return modelAndView;
     }
 
+    @GetMapping("/update/{id}")
+    public ModelAndView updateFuncionario(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Funcionario funcionario = funcionarioService.getFuncionario(id);
+        view.addObject("funcionario", funcionario);
+        view.addObject("cargos", cargoService.getCargos());
+        view.addObject("cidades", cidadeService.getCidades());
+        view.addObject("lotacoes", subSetorService.getSubSetors());
+        view.setViewName("funcionario/form_funcionario");
+        return view;
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateFuncionario(@Valid Funcionario funcionario, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();

@@ -9,7 +9,8 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post" th:object="${funcionario}" th:action="@{/funcionarios/new_func}">
+                    <form method="post" th:object="${funcionario}"
+                          th:action="${funcionario.id != null} ? @{/funcionarios/update} : @{/funcionarios/new_func}">
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">
@@ -99,10 +100,11 @@
                             <div class="form-group col-md-12">
                                 <label for="id_complemento">Complemento:</label>
                                 <input type="text" name="complemento" maxlength="255" class="form-control" required=""
-                                id="id_complemento" th:field="*{endereco.complemento}">
+                                       id="id_complemento" th:field="*{endereco.complemento}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
                         </div>
+                        <hr class="my-3 pt-0">
                         <div class="text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg  w-25">Salvar</button>
                             <a th:href="@{/funcionarios/listar}" class="btn btn-secondary btn-lg  w-25">Cancelar</a>

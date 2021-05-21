@@ -45,7 +45,7 @@
                                     </td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a class="btn btn-success ">
+                                            <a th:href="@{/funcionarios/update/{id} (id=${func.id})}" class="btn btn-success ">
                                                 <i class="feather icon-edit-2"></i>
                                             </a>
                                             <a th:href="@{/funcionarios/detail/{id} (id=${func.id})}" class="btn btn-warning">
