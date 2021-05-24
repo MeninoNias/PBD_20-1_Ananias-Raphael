@@ -53,7 +53,7 @@
                                     <td class="text-center align-middle py-1">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <div th:if="${protocolo.status.getSigla() == 'PE'}">
-                                                <a class="btn btn-success px-2 py-1"
+                                                <a class="btn btn-success px-2 py-1" th:href="@{/protocolos/update/{id} (id=${protocolo.id})}"
                                                    th:if="${#authorization.expression('hasAuthority(''USER'')')}">
                                                     <i class="feather icon-edit-2"></i>
                                                 </a>
@@ -72,10 +72,12 @@
                                                th:href="@{/resposta_protocolo/detail/{id} (id=${protocolo.id})}">
                                                 <i class="feather icon-eye"></i>
                                             </a>
-                                            <a class="btn btn-danger px-2 py-1"
-                                               th:if="${#authorization.expression('hasAuthority(''USER'')')}">
-                                                <i class="feather icon-x-circle"></i>
-                                            </a>
+                                            <div th:if="${protocolo.status.getSigla() == 'PE'}">
+                                                <a class="btn btn-danger px-2 py-1"
+                                                   th:if="${#authorization.expression('hasAuthority(''USER'')')}">
+                                                    <i class="feather icon-x-circle"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

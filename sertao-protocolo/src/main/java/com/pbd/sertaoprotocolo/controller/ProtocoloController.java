@@ -1,10 +1,8 @@
 package com.pbd.sertaoprotocolo.controller;
 
 
-import com.pbd.sertaoprotocolo.model.Funcionario;
+import com.pbd.sertaoprotocolo.model.*;
 import com.pbd.sertaoprotocolo.model.Protocolo;
-import com.pbd.sertaoprotocolo.model.Protocolo;
-import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import com.pbd.sertaoprotocolo.service.UserService;
@@ -15,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -105,6 +104,30 @@ public class ProtocoloController {
         modelAndView.addObject("successMessage", "Protocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/protocolos/my_protocol");
 
+        return modelAndView;
+    }
+
+    @GetMapping("/update/{id}")
+    public ModelAndView createProtocolo(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Protocolo protocolo = protocoloService.getProtocolo(id);
+        view.addObject("categorias", categoriaProtocoloService.getCategoriaProtocolos());
+        view.addObject("protocolo", protocolo);
+        view.setViewName("protocolo/form_protocolo");
+        return view;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateProtocolo(@Valid Protocolo protocolo, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+        protocolo.setAssunto(protocolo.getAssunto().toUpperCase());
+        if (result.hasErrors()) {
+            modelAndView.setViewName("protocolo/protocolo_form");
+        } else {
+            protocoloService.updateProtocolo(protocolo);
+            modelAndView.addObject("successMessage", "Protocolo registrado com sucesso");
+            modelAndView.setViewName("redirect:/protocolos/my_protocol");
+        }
         return modelAndView;
     }
 
