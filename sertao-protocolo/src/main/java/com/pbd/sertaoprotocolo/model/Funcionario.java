@@ -31,9 +31,8 @@ public class Funcionario extends AbstractEntity<Long> {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "funcionarioResponsavel", cascade = CascadeType.ALL)
-    @JoinColumn(name = "resposta_protocolo_id")
-    private RespostaProtocolo respostaProtocolo;
+    @OneToMany(mappedBy = "funcionarioResponsavel")
+    private List<RespostaProtocolo> respostaProtocolos;
 
     @ManyToOne
     @JoinColumn(name = "id_cargo_fk")

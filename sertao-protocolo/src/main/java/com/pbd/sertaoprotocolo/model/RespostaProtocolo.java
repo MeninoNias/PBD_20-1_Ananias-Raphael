@@ -26,8 +26,8 @@ public class RespostaProtocolo extends AbstractEntity<Long>{
     @JoinColumn(name = "id_protocolo_fk")
     private Protocolo protocolo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "funcionario_id_fk")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_funcionario_fk")
     private Funcionario funcionarioResponsavel ;
 
 }
