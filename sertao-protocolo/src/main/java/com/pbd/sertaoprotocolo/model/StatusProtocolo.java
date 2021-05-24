@@ -15,4 +15,11 @@ public enum StatusProtocolo {
         this.descricao = descricao;
     }
 
+    public String getSigla() {
+        return sigla;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

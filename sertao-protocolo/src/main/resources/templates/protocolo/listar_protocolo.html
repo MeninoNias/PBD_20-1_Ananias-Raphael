@@ -39,8 +39,11 @@
                                     </td>
                                     <td class="text-center align-middle py-1">
                                         <h6 class="text-muted">
-                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15"></i>
-                                            PENDENTE
+                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15" th:if="${protocolo.status.getSigla() == 'PE'}"></i>
+                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15" th:if="${protocolo.status.getSigla() == 'AN'}"></i>
+                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15" th:if="${protocolo.status.getSigla() == 'RE'}"></i>
+                                            <i class="fas fa-circle text-c-yellow f-10 m-r-15" th:if="${protocolo.status.getSigla() == 'CA'}"></i>
+                                            <span th:text="*{protocolo.status.getDescricao()}"></span>
                                         </h6>
                                     </td>
                                     <td class="text-center align-middle py-1">
