@@ -3,7 +3,7 @@ package com.pbd.sertaoprotocolo.model;
 public enum StatusProtocolo {
 
     PE("PE", "PENDENTE"),
-    AN("AN", "ANALIZE"),
+    AN("AN", "EM ANALISE"),
     RE("RE", "RESPONDIDO"),
     CA("CA", "CANCELADO");
 

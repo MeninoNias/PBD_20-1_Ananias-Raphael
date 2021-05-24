@@ -2,6 +2,7 @@ package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.model.RespostaProtocolo;
+import com.pbd.sertaoprotocolo.model.StatusProtocolo;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.RespostaProtocoloService;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
@@ -46,7 +47,14 @@ public class RespostaProtocoloController {
     @GetMapping("/new_resposta_protocolo/{id_protocolo}")
     public ModelAndView createRespostaProtocolo(RespostaProtocolo respostaProtocolo, @PathVariable("id_protocolo") Long id) {
         ModelAndView view = new ModelAndView();
-        view.addObject("protocolo", protocoloService.getProtocolo(id));
+        Protocolo protocolo = protocoloService.getProtocolo(id);
+        if (protocolo.getStatus() != StatusProtocolo.RE
+                || protocolo.getStatus() != StatusProtocolo.CA
+                || protocolo.getStatus() != StatusProtocolo.AN) {
+            protocolo.setStatus(StatusProtocolo.AN);
+            protocoloService.updateProtocolo(protocolo);
+        }
+        view.addObject("protocolo", protocolo);
         view.setViewName("resposta_protocolo/form_resposta_protocolo");
         return view;
     }
@@ -60,6 +68,7 @@ public class RespostaProtocoloController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
 
+        protocolo.setStatus(StatusProtocolo.RE);
         resposta_protocolo.setResposta(resposta_protocolo.getResposta().toUpperCase());
         resposta_protocolo.setDataResposta(LocalDate.now());
         resposta_protocolo.setProtocolo(protocolo);
