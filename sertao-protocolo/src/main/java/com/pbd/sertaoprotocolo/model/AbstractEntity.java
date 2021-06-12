@@ -1,17 +1,34 @@
 package com.pbd.sertaoprotocolo.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @MappedSuperclass
-public abstract class AbstractEntity <ID extends Serializable> implements Serializable {
+public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private ID id;
+
+    @CreatedBy
+    private User user;
+
+    @Column(name = "created_at")
+    @CreatedDate
+    private LocalDate created_at;
+
+    @Column(name = "updated_at")
+    @LastModifiedDate
+    private LocalDate updated_at;
+
+    private boolean bd_ativo = true;
 
     public ID getId() {
         return id;
@@ -19,6 +36,22 @@ public abstract class AbstractEntity <ID extends Serializable> implements Serial
 
     public void setId(ID id) {
         this.id = id;
+    }
+
+    public LocalDate getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDate created_at) {
+        this.created_at = created_at;
+    }
+
+    public LocalDate getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDate updated_at) {
+        this.updated_at = updated_at;
     }
 
     @Override
