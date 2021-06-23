@@ -29,6 +29,10 @@ public class DummyData {
 //    @PostConstruct
     public void saveUser(){
 
+        Role role = new Role();
+        role.setRole("ADMIN");
+        roleRepository.save(role);
+
         Funcionario funcionario = new Funcionario();
         funcionario.setNome("Ananias Raphel");
         funcionario.setMatricula("0000");

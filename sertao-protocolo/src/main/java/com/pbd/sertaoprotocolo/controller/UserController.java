@@ -1,5 +1,6 @@
 package com.pbd.sertaoprotocolo.controller;
 
+import com.pbd.sertaoprotocolo.backup.Backup;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.repository.RoleRepository;
 import com.pbd.sertaoprotocolo.service.UserService;
@@ -21,9 +22,13 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
 
+    private Backup backup;
+
     @GetMapping("/listar")
     public ModelAndView listUser() {
         ModelAndView view = new ModelAndView();
+        backup = new Backup();
+        backup.fazBackup();
         view.addObject("users", userService.getUsers());
         view.setViewName("user/listar_user");
         return view;

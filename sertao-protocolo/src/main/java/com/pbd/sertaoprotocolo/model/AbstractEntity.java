@@ -1,6 +1,5 @@
 package com.pbd.sertaoprotocolo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,9 +15,6 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private ID id;
-
-    @CreatedBy
-    private User user;
 
     @Column(name = "created_at")
     @CreatedDate
