@@ -2,11 +2,12 @@ package com.pbd.sertaoprotocolo.backup;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Backup {
 
     private static final String SEPARATOR = File.separator;
-    private final String path = "./backup/sertao_protocolo" + ".backup";
+    private final String path = "./backup/sertao_protocolo"+ LocalDate.now() + ".backup";
 
     private static final String POST_PATH_WIN =
             "C:" + SEPARATOR +
@@ -27,6 +28,12 @@ public class Backup {
     public void fazBackup() {
         String command = (System.getProperty("os.name").equalsIgnoreCase("Linux")) ? POST_PATH_LINUX : POST_PATH_WIN;
         System.out.println(command);
+
+        File file = new File("./backup/");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
         ProcessBuilder pb = new ProcessBuilder(
                 command,
                 "-h",
