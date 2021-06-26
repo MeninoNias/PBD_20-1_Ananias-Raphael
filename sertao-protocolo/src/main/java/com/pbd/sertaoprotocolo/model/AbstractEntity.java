@@ -3,13 +3,17 @@ package com.pbd.sertaoprotocolo.model;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
     @Id
@@ -48,6 +52,14 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
 
     public void setUpdated_at(LocalDate updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public boolean isBd_ativo() {
+        return bd_ativo;
+    }
+
+    public void setBd_ativo(boolean bd_ativo) {
+        this.bd_ativo = bd_ativo;
     }
 
     @Override
