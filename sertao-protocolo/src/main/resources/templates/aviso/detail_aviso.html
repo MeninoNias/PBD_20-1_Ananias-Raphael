@@ -4,17 +4,23 @@
 <div layout:fragment="main">
     <div class="pcoded-content">
         <div class="pcoded-inner-content">
-            <!-- [ breadcrumb ] start -->
-
-            <!-- [ breadcrumb ] end -->
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <div class="container">
+                    <div class="container px-5">
                         <article>
-                            <h4 class="card-title" th:text="${aviso.titulo}"></h4>
-                            <section>
-                                <p class="cart-text" th:utext="${aviso.descricao}"></p>
+                            <div class="card-header">
+                                <div class="d-flex bd-highlight">
+                                    <div class="mr-auto bd-highlight pb-2">
+                                        <h3 th:text="${aviso.titulo}"></h3>
+                                    </div>
+                                    <div class="bd-highlight">
+                                        <h4 class="font-weight-light" th:text="${#temporals.format(aviso.updated_at, 'dd/MM/yyyy')}"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="px-3 mt-4">
+                                <h5 class="cart-text text-justify" th:utext="${aviso.descricao}"></h5>
                             </section>
                         </article>
                     </div>
