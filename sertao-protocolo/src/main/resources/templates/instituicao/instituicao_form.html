@@ -24,7 +24,7 @@
                         <div class="row form-group">
                             <div class="form-group col-md-6">
                                 <label for="id_cnpj">CNPJ:</label>
-                                <input type="number" name="cnpj" class="form-control" required=""
+                                <input type="text" name="cnpj" class="form-control cnpj" required=""
                                        id="id_cnpj" placeholder="CNPJ" th:field="*{cnpj}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
@@ -34,7 +34,7 @@
                         <div class="form-row align-items-end">
                             <div class="form-group col-md-2">
                                 <label for="id_cep">CEP:</label>
-                                <input type="text" name="cep" class="form-control" required=""
+                                <input type="text" name="cep" class="form-control cep" required=""
                                        id="id_cep" placeholder="CEP" th:field="*{endereco.cep}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
