@@ -10,7 +10,7 @@ public class Instituicao extends AbstractEntity<Long>{
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 14)
+    @Column(nullable = false, unique = true, length = 18)
     private String cnpj;
 
     @Column(name = "ativo")

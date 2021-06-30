@@ -24,7 +24,7 @@ public class Funcionario extends AbstractEntity<Long> {
     @NotEmpty(message = "*Por favor, preencha o campo matricula")
     private String matricula;
 
-    @Length(min = 10, max = 11, message = "*Formato de telefone invalido")
+    @Length(min = 10, max = 14, message = "*Formato de telefone invalido")
     private String telefone;
 
     @OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)

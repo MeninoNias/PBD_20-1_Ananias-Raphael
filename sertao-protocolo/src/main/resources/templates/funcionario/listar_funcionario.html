@@ -38,10 +38,10 @@
                                         <h6 th:text="*{func.nome}"></h6>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <h6 th:text="*{func.cargo.nome}"></h6>
+                                        <h6 th:text="${func?.cargo?.nome}"></h6>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <h6 th:text="*{func.lotacao.nome}"></h6>
+                                        <h6 th:text="${func?.lotacao?.nome}"></h6>
                                     </td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">

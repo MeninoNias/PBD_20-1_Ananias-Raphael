@@ -49,7 +49,7 @@
                         <div class="row form-group">
                             <div class="form-group col-md-4">
                                 <label for="id_telefone">Telefone:</label>
-                                <input type="text" name="telefone" maxlength="11" minlength="10"
+                                <input type="text" name="telefone" maxlength="14" minlength="10"
                                        class="form-control tel-mask" required=""
                                        id="id_telefone" placeholder="(99) 9 9999-9999" th:field="*{telefone}">
                                 <div class="text-danger font-weight-bold"></div>
@@ -61,7 +61,7 @@
                         <div class="form-row align-items-end">
                             <div class="form-group col-md-2">
                                 <label for="id_cep">CEP:</label>
-                                <input type="text" name="cep" class="form-control" required=""
+                                <input type="text" name="cep" class="form-control cep" required=""
                                        id="id_cep" th:field="*{endereco.cep}">
                                 <div class="text-danger font-weight-bold"></div>
                             </div>
