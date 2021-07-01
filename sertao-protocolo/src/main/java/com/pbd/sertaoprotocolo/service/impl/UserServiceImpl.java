@@ -1,14 +1,19 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.export.UserExport;
 import com.pbd.sertaoprotocolo.model.Role;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.repository.RoleRepository;
 import com.pbd.sertaoprotocolo.repository.UserRepository;
 import com.pbd.sertaoprotocolo.service.UserService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserExport userExport;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -57,5 +63,16 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public XSSFWorkbook exportExel() {
+
+        userExport = new UserExport();
+        userExport.exelCabelcalho();
+        userExport.popularLinhas(getUsers());
+
+        return userExport.getWorkbook();
+
     }
 }
