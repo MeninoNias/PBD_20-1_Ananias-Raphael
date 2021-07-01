@@ -1,6 +1,7 @@
 package com.pbd.sertaoprotocolo.service;
 
 import com.pbd.sertaoprotocolo.model.Funcionario;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.List;
 
@@ -17,4 +18,7 @@ public interface FuncionarioService {
     Funcionario updateFuncionario(Funcionario funcionario);
 
     Funcionario deleteFuncionario(Long id);
+
+    XSSFWorkbook exportExel();
+
 }

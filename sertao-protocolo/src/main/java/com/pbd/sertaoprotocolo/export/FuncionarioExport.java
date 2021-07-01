@@ -1,6 +1,6 @@
 package com.pbd.sertaoprotocolo.export;
 
-import com.pbd.sertaoprotocolo.model.User;
+import com.pbd.sertaoprotocolo.model.Funcionario;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -10,18 +10,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.List;
 
-public class UserExport {
+public class FuncionarioExport {
 
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public UserExport() {
+    public FuncionarioExport() {
         this.workbook = new XSSFWorkbook();
     }
 
 
     public void exelCabelcalho() {
-        sheet = workbook.createSheet("Users");
+        sheet = workbook.createSheet("Funcionarios");
 
         Row row = sheet.createRow(0);
 
@@ -32,13 +32,13 @@ public class UserExport {
         style.setFont(font);
 
         createCell(row, 0, "id", style);
-        createCell(row, 1, "e-mail", style);
-        createCell(row, 2, "user", style);
-        createCell(row, 3, "ativo", style);
-        createCell(row, 4, "creado_em", style);
-        createCell(row, 5, "atualizado_em", style);
-
-
+        createCell(row, 1, "nome", style);
+        createCell(row, 2, "matricula", style);
+        createCell(row, 3, "telefone", style);
+        createCell(row, 4, "cargo", style);
+        createCell(row, 5, "lotacao", style);
+        createCell(row, 6, "creado_em", style);
+        createCell(row, 7, "atualizado_em", style);
 
     }
 
@@ -58,7 +58,7 @@ public class UserExport {
 
     }
 
-    public void popularLinhas(List<User> users) {
+    public void popularLinhas(List<Funcionario> funcionarios) {
         int rowCount = 1;
 
         CellStyle style = workbook.createCellStyle();
@@ -66,16 +66,18 @@ public class UserExport {
         font.setFontHeight(11);
         style.setFont(font);
 
-        for (User user : users) {
+        for (Funcionario funcionario : funcionarios) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
 
-            createCell(row, columnCount++, user.getId(), style);
-            createCell(row, columnCount++, user.getEmail(), style);
-            createCell(row, columnCount++, user.getUserName(), style);
-            createCell(row, columnCount++, user.getActive(), style);
-            createCell(row, columnCount++, user.getCreated_at(), style);
-            createCell(row, columnCount++, user.getUpdated_at(), style);
+            createCell(row, columnCount++, funcionario.getId(), style);
+            createCell(row, columnCount++, funcionario.getNome(), style);
+            createCell(row, columnCount++, funcionario.getMatricula(), style);
+            createCell(row, columnCount++, funcionario.getTelefone(), style);
+            createCell(row, columnCount++, funcionario.getCargo() != null ? funcionario.getCargo().getNome() : "-", style);
+            createCell(row, columnCount++, funcionario.getLotacao() != null ? funcionario.getLotacao().getNome() : "-", style);
+            createCell(row, columnCount++, funcionario.getCreated_at() != null ? funcionario.getCreated_at().toString() : "-", style);
+            createCell(row, columnCount++, funcionario.getUpdated_at() != null ? funcionario.getUpdated_at().toString() : "-", style);
 
         }
     }
@@ -84,3 +86,5 @@ public class UserExport {
         return workbook;
     }
 }
+
+

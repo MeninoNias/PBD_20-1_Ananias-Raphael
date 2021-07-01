@@ -1,22 +1,25 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.model.*;
+import com.pbd.sertaoprotocolo.model.Funcionario;
+import com.pbd.sertaoprotocolo.model.UF;
 import com.pbd.sertaoprotocolo.service.CargoService;
 import com.pbd.sertaoprotocolo.service.CidadeService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
 import com.pbd.sertaoprotocolo.service.SubSetorService;
-import org.dom4j.rule.Mode;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -102,6 +105,23 @@ public class FuncionarioController {
         view.addObject("funcionario", funcionario);
         view.setViewName("funcionario/detail_funcionario");
         return view;
+    }
+
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=funcioanrios_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        ServletOutputStream outputStream = response.getOutputStream();
+        XSSFWorkbook sheets = funcionarioService.exportExel();
+        sheets.write(outputStream);
+        sheets.close();
+        outputStream.close();
     }
 
     @ModelAttribute("ufs")

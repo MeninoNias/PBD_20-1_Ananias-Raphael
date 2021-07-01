@@ -1,8 +1,11 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.export.FuncionarioExport;
+import com.pbd.sertaoprotocolo.export.UserExport;
 import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.repository.FuncionarioRepository;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Autowired
     FuncionarioRepository funcionarioRepository;
+
+    private FuncionarioExport funcExport;
+
 
     @Override
     @Transactional
@@ -44,6 +50,16 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     @Override
     public Funcionario deleteFuncionario(Long id) {
         return null;
+    }
+
+    @Override
+    public XSSFWorkbook exportExel() {
+        funcExport = new FuncionarioExport();
+        funcExport.exelCabelcalho();
+        funcExport.popularLinhas(getFuncionarios());
+
+        return funcExport.getWorkbook();
+
     }
 
 }
