@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface AvisoRepository extends JpaRepository<Aviso, Long> {
     List<Aviso> findAllByFuncionarios(Funcionario funcionario);
+    List<Aviso> findByAtivoBanco(boolean b);
 }

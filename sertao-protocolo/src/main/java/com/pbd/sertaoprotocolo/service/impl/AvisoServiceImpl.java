@@ -18,7 +18,7 @@ public class AvisoServiceImpl implements AvisoService {
 
     @Override
     public List<Aviso> getAvisos() {
-        return avisoRepository.findAll();
+        return avisoRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -44,7 +44,10 @@ public class AvisoServiceImpl implements AvisoService {
 
     @Override
     public Aviso deleteAviso(Long id) {
-        return null;
+        Aviso aviso = getAviso(id);
+        aviso.setAtivoBanco(false);
+        updateAviso(aviso);
+        return aviso;
     }
 
 }
