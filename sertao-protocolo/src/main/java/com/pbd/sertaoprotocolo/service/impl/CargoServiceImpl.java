@@ -16,7 +16,7 @@ public class CargoServiceImpl implements CargoService {
 
     @Override
     public List<Cargo> getCargos() {
-        return cargoRepository.findAll();
+        return cargoRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -41,6 +41,9 @@ public class CargoServiceImpl implements CargoService {
 
     @Override
     public Cargo deleteCargo(Long id) {
-        return null;
+        Cargo cargo = getCargo(id);
+        cargo.setAtivoBanco(false);
+        updateCargo(cargo);
+        return cargo;
     }
 }
