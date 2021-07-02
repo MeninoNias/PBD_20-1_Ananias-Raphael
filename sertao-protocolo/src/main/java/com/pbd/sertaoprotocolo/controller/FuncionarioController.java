@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -104,6 +105,15 @@ public class FuncionarioController {
         Funcionario funcionario = funcionarioService.getFuncionario(id);
         view.addObject("funcionario", funcionario);
         view.setViewName("funcionario/detail_funcionario");
+        return view;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteFuncionario(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Funcionario funcionario = funcionarioService.getFuncionario(id);
+        funcionarioService.deleteFuncionario(funcionario.getId());
+        view.setViewName("redirect:/funcionarios/listar");
         return view;
     }
 

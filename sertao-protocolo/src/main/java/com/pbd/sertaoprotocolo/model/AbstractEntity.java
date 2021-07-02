@@ -25,7 +25,7 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
     @LastModifiedDate
     private LocalDate updated_at;
 
-    private boolean bd_ativo = true;
+    private boolean ativoBanco = true;
 
     public ID getId() {
         return id;
@@ -51,12 +51,12 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
         this.updated_at = updated_at;
     }
 
-    public boolean isBd_ativo() {
-        return bd_ativo;
+    public boolean isAtivoBanco() {
+        return ativoBanco;
     }
 
-    public void setBd_ativo(boolean bd_ativo) {
-        this.bd_ativo = bd_ativo;
+    public void setAtivoBanco(boolean ativoBanco) {
+        this.ativoBanco = ativoBanco;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
 import com.pbd.sertaoprotocolo.export.FuncionarioExport;
-import com.pbd.sertaoprotocolo.export.UserExport;
 import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.repository.FuncionarioRepository;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
@@ -24,7 +23,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     @Override
     @Transactional
     public List<Funcionario> getFuncionarios() {
-        return funcionarioRepository.findAll();
+        return funcionarioRepository.findFuncionariosByAtivoBanco(true);
     }
 
     @Override
@@ -49,7 +48,10 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Override
     public Funcionario deleteFuncionario(Long id) {
-        return null;
+        Funcionario funcionario = getFuncionario(id);
+        funcionario.setAtivoBanco(false);
+        updateFuncionario(funcionario);
+        return funcionario;
     }
 
     @Override
