@@ -16,7 +16,7 @@ public class CategoriaProtocoloServiceImpl implements CategoriaProtocoloService 
 
     @Override
     public List<CategoriaProtocolo> getCategoriaProtocolos() {
-        return categoriaRepository.findAll();
+        return categoriaRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -41,7 +41,10 @@ public class CategoriaProtocoloServiceImpl implements CategoriaProtocoloService 
 
     @Override
     public CategoriaProtocolo deleteCategoriaProtocolo(Long id) {
-        return null;
+        CategoriaProtocolo categoria = getCategoriaProtocolo(id);
+        categoria.setAtivoBanco(false);
+        updateCategoriaProtocolo(categoria);
+        return categoria;
     }
 
 }
