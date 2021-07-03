@@ -91,11 +91,12 @@ public class AvisoController {
         ModelAndView view = new ModelAndView();
         Aviso aviso = avisoService.getAviso(id);
         if (aviso.getFuncionarios().size() != 0) {
-            view.addObject("errorMensage", "Aviso não pode ser deletado");
+            view.addObject("error", "Aviso não pode ser deletado");
         } else {
             avisoService.deleteAviso(aviso.getId());
         }
         view.setViewName("redirect:/avisos/listar");
+        System.out.println(view);
         return view;
     }
 
