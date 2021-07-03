@@ -86,6 +86,19 @@ public class AvisoController {
         return view;
     }
 
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteAviso(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Aviso aviso = avisoService.getAviso(id);
+        if (aviso.getFuncionarios().size() != 0) {
+            view.addObject("errorMensage", "Aviso não pode ser deletado");
+        } else {
+            avisoService.deleteAviso(aviso.getId());
+        }
+        view.setViewName("redirect:/avisos/listar");
+        return view;
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateAviso(@Valid Aviso aviso, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();

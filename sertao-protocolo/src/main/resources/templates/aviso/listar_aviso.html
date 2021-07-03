@@ -31,8 +31,8 @@
                                 <tr>
                                     <th scope="row" class="align-middle text-center"><h6 th:text="*{a.titulo}"></h6>
                                     </th>
-                                    <th scope="row" class="text-center align-middle"><h6>25 de Outubro de 2020 às
-                                        01:57</h6>
+                                    <th scope="row" class="text-center align-middle">
+                                        <h6 th:text="${#temporals.format(a.updated_at, 'dd/MM/yyyy')}"></h6>
                                     </th>
                                     <td class="text-center align-middle">
                                         <h6 class="text-muted">
@@ -49,9 +49,9 @@
                                                th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
                                                 <i class="feather icon-edit-2"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger"
+                                            <a th:href="@{/avisos/delete/{id} (id=${a.id})}" class="btn btn-danger"
                                                th:if="${#authorization.expression('hasAuthority(''ADMIN'')') or #authorization.expression('hasAuthority(''USER_ADMIN'')')}">
-                                                <i class="feather icon-x-circle"></i>
+                                                <i class="feather icon-trash"></i>
                                             </a>
                                         </div>
                                     </td>

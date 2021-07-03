@@ -17,6 +17,7 @@ public class AvisoServiceImpl implements AvisoService {
     AvisoRepository avisoRepository;
 
     @Override
+    @Transactional
     public List<Aviso> getAvisos() {
         return avisoRepository.findByAtivoBanco(true);
     }
