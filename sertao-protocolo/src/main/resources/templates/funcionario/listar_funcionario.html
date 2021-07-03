@@ -11,11 +11,12 @@
                     <!-- [ Main Content ] start -->
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">FUNCIONARIOS</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
-                                                               th:href="@{/funcionarios/new_func}">Novo</a>
+                        <div class="align-self-center mr-3">
+                            <a class="btn btn-warning px-5" th:href="@{/funcionarios/new_func}">NOVO</a>
                         </div>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
-                                                               th:href="@{/funcionarios/export/excel}">EXPORTAR</a>
+                        <div class="align-self-center mr-3"
+                             th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                            <a class="btn btn-success px-3" th:href=" @{/funcionarios/export/excel}">EXPORTAR</a>
                         </div>
                     </div>
                     <div class="row">

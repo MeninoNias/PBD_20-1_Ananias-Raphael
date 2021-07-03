@@ -12,7 +12,11 @@
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">PROTOCOLO</h3>
                         <div class="align-self-center mr-3">
-                            <a class="btn btn-warning px-5" th:href="@{/protocolos/new_protocolo}">Novo</a>
+                            <a class="btn btn-warning px-5" th:href="@{/protocolos/new_protocolo}">NOVO</a>
+                        </div>
+                        <div class="align-self-center mr-3"
+                             th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                            <a class="btn btn-success px-3" th:href="@{/protocolos/export/excel}">EXPORTAR</a>
                         </div>
                     </div>
                     <div class="row">
@@ -53,7 +57,8 @@
                                     <td class="text-center align-middle py-1">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <div th:if="${protocolo.status.getSigla() == 'PE'}">
-                                                <a class="btn btn-success px-2 py-1" th:href="@{/protocolos/update/{id} (id=${protocolo.id})}"
+                                                <a class="btn btn-success px-2 py-1"
+                                                   th:href="@{/protocolos/update/{id} (id=${protocolo.id})}"
                                                    th:if="${#authorization.expression('hasAuthority(''USER'')')}">
                                                     <i class="feather icon-edit-2"></i>
                                                 </a>

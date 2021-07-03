@@ -6,6 +6,7 @@ import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import com.pbd.sertaoprotocolo.service.UserService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,8 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -117,6 +124,15 @@ public class ProtocoloController {
         return view;
     }
 
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteProtocolo(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        Protocolo protocolo = protocoloService.getProtocolo(id);
+        protocoloService.deleteProtocolo(protocolo.getId());
+        view.setViewName("redirect:/protocolos/my_protocol");
+        return view;
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateProtocolo(@Valid Protocolo protocolo, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
@@ -129,6 +145,23 @@ public class ProtocoloController {
             modelAndView.setViewName("redirect:/protocolos/my_protocol");
         }
         return modelAndView;
+    }
+
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=protocolos_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        ServletOutputStream outputStream = response.getOutputStream();
+        XSSFWorkbook sheets = protocoloService.exportExel();
+        sheets.write(outputStream);
+        sheets.close();
+        outputStream.close();
     }
 
 }

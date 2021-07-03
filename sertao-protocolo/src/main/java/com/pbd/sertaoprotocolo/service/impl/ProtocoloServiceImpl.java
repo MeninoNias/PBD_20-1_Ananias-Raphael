@@ -1,10 +1,12 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
-import com.pbd.sertaoprotocolo.model.Aviso;
+import com.pbd.sertaoprotocolo.export.FuncionarioExport;
+import com.pbd.sertaoprotocolo.export.ProtocoloExport;
 import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.repository.ProtocoloRepository;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,9 @@ public class ProtocoloServiceImpl implements ProtocoloService {
 
     @Autowired
     ProtocoloRepository protocoloRepository;
+
+    private ProtocoloExport protocoloExport;
+
 
     @Override
     public List<Protocolo> getProtocolos() {
@@ -55,6 +60,15 @@ public class ProtocoloServiceImpl implements ProtocoloService {
         protocolo.setAtivoBanco(false);
         updateProtocolo(protocolo);
         return protocolo;
+    }
+
+    @Override
+    public XSSFWorkbook exportExel() {
+        protocoloExport = new ProtocoloExport();
+        protocoloExport.exelCabelcalho();
+        protocoloExport.popularLinhas(getProtocolos());
+
+        return protocoloExport.getWorkbook();
     }
 
 }

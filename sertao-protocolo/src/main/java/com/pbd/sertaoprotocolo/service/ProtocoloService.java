@@ -2,6 +2,7 @@ package com.pbd.sertaoprotocolo.service;
 
 import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.model.Protocolo;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface ProtocoloService {
     Protocolo updateProtocolo(Protocolo protocolo);
 
     Protocolo deleteProtocolo(Long id);
+
+    XSSFWorkbook exportExel();
+
 }
