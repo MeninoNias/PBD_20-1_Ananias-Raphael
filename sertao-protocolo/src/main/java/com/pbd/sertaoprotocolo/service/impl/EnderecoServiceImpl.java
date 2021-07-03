@@ -14,7 +14,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public List<Endereco> getEnderecos() {
-        return enderecoRepository.findAll();
+        return enderecoRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -34,6 +34,9 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public Endereco deleteEndereco(Long id) {
-        return null;
+        Endereco endereco = getEndereco(id);
+        endereco.setAtivoBanco(false);
+        updateEndereco(endereco);
+        return endereco;
     }
 }

@@ -2,6 +2,7 @@ package com.pbd.sertaoprotocolo.service.impl;
 
 import com.pbd.sertaoprotocolo.export.UserExport;
 import com.pbd.sertaoprotocolo.model.Role;
+import com.pbd.sertaoprotocolo.model.SubSetor;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.repository.RoleRepository;
 import com.pbd.sertaoprotocolo.repository.UserRepository;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userRepository.findByAtivoBanco(true);
     }
 
     public User findUserByUserName(String userName) {
@@ -60,6 +61,14 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public User deleteUser(User u) {
+        User user = findById(u.getId());
+        user.setAtivoBanco(false);
+        updateUser(user);
+        return user;
     }
 
     @Override

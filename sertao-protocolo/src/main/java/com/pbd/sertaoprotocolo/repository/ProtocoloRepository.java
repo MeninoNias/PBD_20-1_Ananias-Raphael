@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProtocoloRepository extends JpaRepository<Protocolo, Long> {
     Long countAllBy();
 
-    List<Protocolo> findAllByFuncionarioId(Long id);
+    List<Protocolo> findAllByFuncionarioIdAndAtivoBanco(Long id, boolean b);
+    List<Protocolo> findByAtivoBanco(boolean b);
 }

@@ -1,5 +1,6 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.model.Instituicao;
 import com.pbd.sertaoprotocolo.repository.InstituicaoRepository;
 import com.pbd.sertaoprotocolo.service.InstituicaoService;
@@ -16,7 +17,7 @@ public class InstituicaoServiceimpl implements InstituicaoService {
 
     @Override
     public List<Instituicao> getInstituicaos() {
-        return instituicaoRepository.findAll();
+        return instituicaoRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -41,7 +42,10 @@ public class InstituicaoServiceimpl implements InstituicaoService {
 
     @Override
     public Instituicao deleteInstituicao(Long id) {
-        return null;
+        Instituicao instituicao = getInstituicao(id);
+        instituicao.setAtivoBanco(false);
+        updateInstituicao(instituicao);
+        return instituicao;
     }
 
 

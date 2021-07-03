@@ -1,5 +1,6 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.model.Setor;
 import com.pbd.sertaoprotocolo.repository.SetorRepository;
 import com.pbd.sertaoprotocolo.service.SetorService;
@@ -16,7 +17,7 @@ public class SetorServiceImpl implements SetorService {
 
     @Override
     public List<Setor> getSetors() {
-        return setorRepository.findAll();
+        return setorRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -36,8 +37,10 @@ public class SetorServiceImpl implements SetorService {
 
     @Override
     public Setor deleteSetor(Long id) {
-        return null;
+        Setor setor = getSetor(id);
+        setor.setAtivoBanco(false);
+        updateSetor(setor);
+        return setor;
     }
-
 
 }

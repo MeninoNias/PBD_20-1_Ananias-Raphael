@@ -16,7 +16,7 @@ public class SubSetorServiceImpl implements SubSetorService {
 
     @Override
     public List<SubSetor> getSubSetors() {
-        return subSetorRepository.findAll();
+        return subSetorRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -36,7 +36,10 @@ public class SubSetorServiceImpl implements SubSetorService {
 
     @Override
     public SubSetor deleteSubSetor(Long id) {
-        return null;
+        SubSetor subsetor = getSubSetor(id);
+        subsetor.setAtivoBanco(false);
+        updateSubSetor(subsetor);
+        return subsetor;
     }
 
 

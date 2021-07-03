@@ -16,7 +16,7 @@ public class CidadeServiceImpl implements CidadeService {
 
     @Override
     public List<Cidade> getCidades() {
-        return cidadeRepository.findAll();
+        return cidadeRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -30,13 +30,16 @@ public class CidadeServiceImpl implements CidadeService {
     }
 
     @Override
-    public Cidade updateCidade( Cidade cidade) {
+    public Cidade updateCidade(Cidade cidade) {
         return cidadeRepository.save(cidade);
     }
 
     @Override
     public Cidade deleteCidade(Long id) {
-        return null;
+        Cidade cidade = getCidade(id);
+        cidade.setAtivoBanco(false);
+        updateCidade(cidade);
+        return cidade;
     }
 
 }

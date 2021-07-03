@@ -1,5 +1,6 @@
 package com.pbd.sertaoprotocolo.service.impl;
 
+import com.pbd.sertaoprotocolo.model.Aviso;
 import com.pbd.sertaoprotocolo.model.Funcionario;
 import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.repository.ProtocoloRepository;
@@ -18,13 +19,13 @@ public class ProtocoloServiceImpl implements ProtocoloService {
 
     @Override
     public List<Protocolo> getProtocolos() {
-        return protocoloRepository.findAll();
+        return protocoloRepository.findByAtivoBanco(true);
     }
 
     @Override
     @Transactional
     public List<Protocolo> getProtocolosByFuncionarios(Funcionario funcionario) {
-        return protocoloRepository.findAllByFuncionarioId(funcionario.getId());
+        return protocoloRepository.findAllByFuncionarioIdAndAtivoBanco(funcionario.getId(), true);
     }
 
     @Override
@@ -50,7 +51,10 @@ public class ProtocoloServiceImpl implements ProtocoloService {
 
     @Override
     public Protocolo deleteProtocolo(Long id) {
-        return null;
+        Protocolo protocolo = getProtocolo(id);
+        protocolo.setAtivoBanco(false);
+        updateProtocolo(protocolo);
+        return protocolo;
     }
 
 }

@@ -17,7 +17,7 @@ public class RespostaProtocoloServiceImpl implements RespostaProtocoloService {
 
     @Override
     public List<RespostaProtocolo> getRespostaProtocolos() {
-        return repostaProtocoloRepository.findAll();
+        return repostaProtocoloRepository.findByAtivoBanco(true);
     }
 
     @Override
@@ -43,6 +43,9 @@ public class RespostaProtocoloServiceImpl implements RespostaProtocoloService {
 
     @Override
     public RespostaProtocolo deleteRespostaProtocolo(Long id) {
-        return null;
+        RespostaProtocolo repostaProtocolo = getRespostaProtocolo(id);
+        repostaProtocolo.setAtivoBanco(false);
+        updateRespostaProtocolo(repostaProtocolo);
+        return repostaProtocolo;
     }
 }
