@@ -1,6 +1,5 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.model.Cargo;
 import com.pbd.sertaoprotocolo.model.CategoriaProtocolo;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -37,7 +37,7 @@ public class CategoriaController {
     }
 
     @RequestMapping(value = "/new_categoria", method = RequestMethod.POST)
-    public ModelAndView registerCategoria(@Valid CategoriaProtocolo categoriaProtocolo, BindingResult result) {
+    public ModelAndView registerCategoria(@Valid CategoriaProtocolo categoriaProtocolo, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         categoriaProtocolo.setNome(categoriaProtocolo.getNome().toUpperCase());
         CategoriaProtocolo categoriaExist = categoriaService.getCategoriaProtocoloNome(categoriaProtocolo.getNome());
@@ -48,7 +48,7 @@ public class CategoriaController {
             }
         } else {
             categoriaService.createCategoriaProtocolo(categoriaProtocolo);
-            modelAndView.addObject("successMessage", "Categoria registrado com sucesso");
+            attributes.addFlashAttribute("success", "Categoria registrado com sucesso");
             modelAndView.setViewName("redirect:/categorias/listar");
         }
         return modelAndView;
@@ -64,14 +64,14 @@ public class CategoriaController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateCategoriaProtocolo(@Valid CategoriaProtocolo categoriaProtocolo, BindingResult result) {
+    public ModelAndView updateCategoriaProtocolo(@Valid CategoriaProtocolo categoriaProtocolo, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         categoriaProtocolo.setNome(categoriaProtocolo.getNome().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("categoria_protocolo/categoria_form");
         }
         categoriaService.createCategoriaProtocolo(categoriaProtocolo);
-        modelAndView.addObject("successMessage", "CategoriaProtocolo registrado com sucesso");
+        attributes.addFlashAttribute("success", "CategoriaProtocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/categorias/listar");
         return modelAndView;
     }

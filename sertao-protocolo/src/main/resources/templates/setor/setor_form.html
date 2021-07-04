@@ -9,7 +9,9 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
-                    <form method="post" th:object="${setor}" th:action="${setor.id == null } ? @{/setores/new_setor} : @{/setores/update}">
+                    <form method="post" th:object="${setor}"
+                          th:action="${setor.id == null } ? @{/setores/new_setor} : @{/setores/update}">
+                        <div th:replace="core/fragments/validador  :: validador"></div>
                         <h4 class="mb-0 pb-0">Dados Cadastrais</h4>
                         <hr class="mt-1 pt-0">
                         <div class="form-row align-items-end">

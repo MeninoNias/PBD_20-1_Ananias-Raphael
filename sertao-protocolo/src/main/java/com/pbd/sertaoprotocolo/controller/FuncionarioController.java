@@ -63,7 +63,6 @@ public class FuncionarioController {
         Funcionario funcionarioExist = funcionarioService.getFuncionarioMat(funcionario.getMatricula());
         if (funcionarioExist != null) {
             result.rejectValue("matricula", "error", "Já existe um funcionario registrado com o essa matricula.");
-            attributes.addFlashAttribute("error", "Já existe um funcionario registrado com o essa matricula.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("funcionario/form_funcionario");
             }
@@ -95,7 +94,7 @@ public class FuncionarioController {
             modelAndView.setViewName("funcionario/form_funcionario");
         }
         funcionarioService.createFuncionario(funcionario);
-        attributes.addFlashAttribute("success", "Funcionario registrado com sucesso");
+        attributes.addFlashAttribute("success", "Funcionario alterado com sucesso");
         modelAndView.setViewName("redirect:/funcionarios/listar");
         return modelAndView;
     }

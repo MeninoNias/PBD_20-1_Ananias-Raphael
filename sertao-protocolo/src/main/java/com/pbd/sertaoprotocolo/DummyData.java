@@ -31,10 +31,10 @@ public class DummyData {
 //    @PostConstruct
     public void saveUser() {
 
-        Cidade cidade = new Cidade();
-        cidade.setNome("Serra Talhada");
-
-        cidadeService.createCidade(cidade);
+//        Cidade cidade = new Cidade();
+//        cidade.setNome("Serra Talhada");
+//
+//        cidadeService.createCidade(cidade);
 
         Role role = new Role();
         role.setRole("ADMIN");
