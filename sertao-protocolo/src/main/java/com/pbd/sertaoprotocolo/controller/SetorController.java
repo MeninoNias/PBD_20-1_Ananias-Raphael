@@ -6,8 +6,12 @@ import com.pbd.sertaoprotocolo.service.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -37,14 +41,14 @@ public class SetorController {
     }
 
     @RequestMapping(value = "/new_setor", method = RequestMethod.POST)
-    public ModelAndView registerSetor(@Valid Setor setor, BindingResult result) {
+    public ModelAndView registerSetor(@Valid Setor setor, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         setor.setNome(setor.getNome().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("setor/setor_form");
         }
         setorService.createSetor(setor);
-        modelAndView.addObject("successMessage", "Setor registrado com sucesso");
+        attributes.addFlashAttribute("success", "Setor registrado com sucesso");
         modelAndView.setViewName("redirect:/setores/listar");
         return modelAndView;
     }
@@ -60,7 +64,7 @@ public class SetorController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateSetor(@Valid Setor setor, BindingResult result) {
+    public ModelAndView updateSetor(@Valid Setor setor, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         setor.setNome(setor.getNome().toUpperCase());
 
@@ -68,7 +72,7 @@ public class SetorController {
             modelAndView.setViewName("setor/setor_form");
         }
         setorService.createSetor(setor);
-        modelAndView.addObject("successMessage", "Setor registrado com sucesso");
+        attributes.addFlashAttribute("success", "Setor atualizado com sucesso");
         modelAndView.setViewName("redirect:/setores/listar");
         return modelAndView;
     }

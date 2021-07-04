@@ -9,9 +9,11 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
+                    <div th:replace="core/fragments/alert"></div>
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">SETOR</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/setores/new_setor}">Novo</a>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
+                                                               th:href="@{/setores/new_setor}">Novo</a>
                         </div>
                     </div>
                     <div class="row">
@@ -25,12 +27,14 @@
                                 </thead>
                                 <tbody th:each="setor : ${setores}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{setor.id}"></h6></th>
+                                    <th scope="row" class="text-center align-middle"><h6 th:text="*{setor.id}"></h6>
+                                    </th>
                                     <td class="align-middle"><h6 th:text="*{setor.nome}"></h6></td>
                                     <td class="align-middle"><h6 th:text="*{setor.instituicao.nome}"></h6></td>
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a th:href="@{/setores/update/{id} (id=${setor.id})}" class="btn btn-success "><i
+                                            <a th:href="@{/setores/update/{id} (id=${setor.id})}"
+                                               class="btn btn-success "><i
                                                     class="feather icon-edit-2"></i></a>
                                         </div>
                                     </td>
