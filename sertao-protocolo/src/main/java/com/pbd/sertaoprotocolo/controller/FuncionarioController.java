@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -57,18 +57,18 @@ public class FuncionarioController {
     }
 
     @RequestMapping(value = "/new_func", method = RequestMethod.POST)
-    public ModelAndView registerFuncionario(@Valid Funcionario funcionario, BindingResult result) {
+    public ModelAndView registerFuncionario(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
 
         Funcionario funcionarioExist = funcionarioService.getFuncionarioMat(funcionario.getMatricula());
         if (funcionarioExist != null) {
-            result.rejectValue("matricula", "error.funcionario", "Já existe um funcionario registrado com o essa matricula.");
+            attributes.addFlashAttribute("error", "Já existe um funcionario registrado com o essa matricula.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("funcionario/form_funcionario");
             }
         } else {
             funcionarioService.createFuncionario(funcionario);
-            modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
+            attributes.addFlashAttribute("success", "Funcionario registrado com sucesso");
             modelAndView.setViewName("redirect:/funcionarios/listar");
         }
         return modelAndView;
@@ -87,14 +87,14 @@ public class FuncionarioController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateFuncionario(@Valid Funcionario funcionario, BindingResult result) {
+    public ModelAndView updateFuncionario(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (result.hasErrors()) {
             modelAndView.setViewName("funcionario/form_funcionario");
         }
         funcionarioService.createFuncionario(funcionario);
-        modelAndView.addObject("successMessage", "Funcionario registrado com sucesso");
+        attributes.addFlashAttribute("success", "Funcionario registrado com sucesso");
         modelAndView.setViewName("redirect:/funcionarios/listar");
         return modelAndView;
     }
@@ -109,10 +109,11 @@ public class FuncionarioController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView deleteFuncionario(@PathVariable("id") Long id) {
+    public ModelAndView deleteFuncionario(@PathVariable("id") Long id, RedirectAttributes attributes) {
         ModelAndView view = new ModelAndView();
         Funcionario funcionario = funcionarioService.getFuncionario(id);
         funcionarioService.deleteFuncionario(funcionario.getId());
+        attributes.addFlashAttribute("success", "Funcionario deletado com sucesso");
         view.setViewName("redirect:/funcionarios/listar");
         return view;
     }

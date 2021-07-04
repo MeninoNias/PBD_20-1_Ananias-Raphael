@@ -9,9 +9,11 @@
             <div class="main-body">
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
+                    <div th:replace="core/fragments/alert"></div>
                     <div class="d-flex bd-highlight mb-2">
                         <h3 class="mr-auto bd-highlight">INSTITUIÇÃO</h3>
-                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5" th:href="@{/instituicoes/new_instituicao}">Novo</a>
+                        <div class="align-self-center mr-3"><a class="btn btn-warning px-5"
+                                                               th:href="@{/instituicoes/new_instituicao}">Novo</a>
                         </div>
                     </div>
                     <div class="row">
@@ -25,11 +27,14 @@
                                 </thead>
                                 <tbody th:each="i : ${instituicaos}">
                                 <tr>
-                                    <th scope="row" class="text-center align-middle py-1"><h6 class="mb-0" th:text="*{i.id}"></h6></th>
+                                    <th scope="row" class="text-center align-middle py-1"><h6 class="mb-0"
+                                                                                              th:text="*{i.id}"></h6>
+                                    </th>
                                     <td class="align-middle py-1"><h6 class="mb-0" th:text="*{i.nome}"></h6></td>
                                     <td class="text-center align-middle py-1">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a th:href="@{/instituicoes/update/{id} (id=${i.id})}" class="btn btn-success "><i
+                                            <a th:href="@{/instituicoes/update/{id} (id=${i.id})}"
+                                               class="btn btn-success "><i
                                                     class="feather icon-edit-2"></i></a>
                                         </div>
                                     </td>

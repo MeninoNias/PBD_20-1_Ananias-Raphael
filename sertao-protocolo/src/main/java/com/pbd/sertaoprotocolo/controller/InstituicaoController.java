@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -38,18 +39,18 @@ public class InstituicaoController {
     }
 
     @RequestMapping(value = "/new_instituicao", method = RequestMethod.POST)
-    public ModelAndView registerInstituicao(@Valid Instituicao instituicao, BindingResult result) {
+    public ModelAndView registerInstituicao(@Valid Instituicao instituicao, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         instituicao.setNome(instituicao.getNome().toUpperCase());
         Instituicao instituicaoExist = instituicaoService.getInstituicaoCNPJ(instituicao.getCnpj());
         if (instituicaoExist != null) {
-            result.rejectValue("nome", "error.instituicao", "Já existe um instituicao registrado com o essa CNPJ.");
+            attributes.addFlashAttribute("error", "Já existe um instituicao registrado com o essa CNPJ.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("instituicao/instituicao_form");
             }
         } else {
             instituicaoService.createInstituicao(instituicao);
-            modelAndView.addObject("successMessage", "Instituicao registrado com sucesso");
+            attributes.addFlashAttribute("success", "Instituicao registrado com sucesso");
             modelAndView.setViewName("redirect:/instituicoes/listar");
         }
         return modelAndView;
@@ -66,7 +67,7 @@ public class InstituicaoController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateInstituicao(@Valid Instituicao instituicao, BindingResult result) {
+    public ModelAndView updateInstituicao(@Valid Instituicao instituicao, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         instituicao.setNome(instituicao.getNome().toUpperCase());
 
@@ -74,7 +75,7 @@ public class InstituicaoController {
             modelAndView.setViewName("instituicao/instituicao_form");
         }
         instituicaoService.createInstituicao(instituicao);
-        modelAndView.addObject("successMessage", "Instituicao registrado com sucesso");
+        attributes.addFlashAttribute("success", "Instituicao registrado com sucesso");
         modelAndView.setViewName("redirect:/instituicoes/listar");
         return modelAndView;
     }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -64,14 +65,14 @@ public class AvisoController {
     }
 
     @RequestMapping(value = "/new_aviso", method = RequestMethod.POST)
-    public ModelAndView registerAviso(@Valid Aviso aviso, BindingResult result) {
+    public ModelAndView registerAviso(@Valid Aviso aviso, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         aviso.setTitulo(aviso.getTitulo().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("aviso/form_aviso");
         }
         avisoService.createAviso(aviso);
-        modelAndView.addObject("successMessage", "Aviso registrado com sucesso");
+        attributes.addFlashAttribute("success", "Aviso registrado com sucesso");
         modelAndView.setViewName("redirect:/avisos/listar");
         return modelAndView;
     }
@@ -87,11 +88,11 @@ public class AvisoController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView deleteAviso(@PathVariable("id") Long id) {
+    public ModelAndView deleteAviso(@PathVariable("id") Long id, RedirectAttributes attributes) {
         ModelAndView view = new ModelAndView();
         Aviso aviso = avisoService.getAviso(id);
         if (aviso.getFuncionarios().size() != 0) {
-            view.addObject("error", "Aviso não pode ser deletado");
+            attributes.addFlashAttribute("error", "Aviso não pode ser deletado");
         } else {
             avisoService.deleteAviso(aviso.getId());
         }
@@ -101,14 +102,14 @@ public class AvisoController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateAviso(@Valid Aviso aviso, BindingResult result) {
+    public ModelAndView updateAviso(@Valid Aviso aviso, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         aviso.setTitulo(aviso.getTitulo().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("aviso/form_aviso");
         }
         avisoService.createAviso(aviso);
-        modelAndView.addObject("successMessage", "Aviso registrado com sucesso");
+        attributes.addFlashAttribute("success", "Aviso registrado com sucesso");
         modelAndView.setViewName("redirect:/avisos/listar");
         return modelAndView;
     }
