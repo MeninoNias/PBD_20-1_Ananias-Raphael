@@ -1,7 +1,6 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.SubSetor;
-import com.pbd.sertaoprotocolo.service.InstituicaoService;
 import com.pbd.sertaoprotocolo.service.SetorService;
 import com.pbd.sertaoprotocolo.service.SubSetorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -41,14 +41,14 @@ public class SubSetorController {
     }
 
     @RequestMapping(value = "/new_lotacao", method = RequestMethod.POST)
-    public ModelAndView registerSubSetor(@Valid SubSetor subSetor, BindingResult result) {
+    public ModelAndView registerSubSetor(@Valid SubSetor subSetor, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         subSetor.setNome(subSetor.getNome().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("lotacao/lotacao_form");
         }
         lotacaoService.createSubSetor(subSetor);
-        modelAndView.addObject("successMessage", "SubSetor registrado com sucesso");
+        attributes.addFlashAttribute("success", "SubSetor registrado com sucesso");
         modelAndView.setViewName("redirect:/subsetores/listar");
         return modelAndView;
     }
@@ -64,14 +64,14 @@ public class SubSetorController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateSubSetor(@Valid SubSetor subSetor, BindingResult result) {
+    public ModelAndView updateSubSetor(@Valid SubSetor subSetor, BindingResult result, RedirectAttributes attributes) {
         ModelAndView modelAndView = new ModelAndView();
         subSetor.setNome(subSetor.getNome().toUpperCase());
         if (result.hasErrors()) {
             modelAndView.setViewName("lotacao/lotacao_form");
         }
         lotacaoService.createSubSetor(subSetor);
-        modelAndView.addObject("successMessage", "SubSetor registrado com sucesso");
+        attributes.addFlashAttribute("success", "SubSetor alterado com sucesso");
         modelAndView.setViewName("redirect:/subsetores/listar");
         return modelAndView;
     }

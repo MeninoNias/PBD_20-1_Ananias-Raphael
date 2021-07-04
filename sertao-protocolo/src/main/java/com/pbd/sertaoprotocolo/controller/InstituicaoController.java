@@ -44,6 +44,7 @@ public class InstituicaoController {
         instituicao.setNome(instituicao.getNome().toUpperCase());
         Instituicao instituicaoExist = instituicaoService.getInstituicaoCNPJ(instituicao.getCnpj());
         if (instituicaoExist != null) {
+            result.rejectValue("nome", "error", "Já existe um instituicao registrado com o essa CNPJ.");
             attributes.addFlashAttribute("error", "Já existe um instituicao registrado com o essa CNPJ.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("instituicao/instituicao_form");
