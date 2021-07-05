@@ -19,6 +19,11 @@ public class BackupServiceImpl implements BackupService {
         if(!file.exists()){
             Backup backup = new Backup();
             backup.fazBackup();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             file = new File(path);
         }
 
