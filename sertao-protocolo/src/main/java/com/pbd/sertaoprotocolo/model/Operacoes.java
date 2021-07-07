@@ -1,0 +1,25 @@
+package com.pbd.sertaoprotocolo.model;
+
+public enum Operacoes {
+
+    IN("IN", "CRIOU"),
+    DE("DE", "DELETOU"),
+    UP("UP", "ATUALIZOU"),
+    RE("RE", "VIZUALIZOU");
+
+    private String sigla;
+    private String descricao;
+
+    Operacoes(String sigla, String descricao) {
+        this.sigla = sigla;
+        this.descricao = descricao;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+}
