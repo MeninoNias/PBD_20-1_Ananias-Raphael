@@ -12,6 +12,8 @@ public interface ProtocoloService {
 
     List<Protocolo> getProtocolosByFuncionarios(Funcionario funcionario);
 
+    List<Integer> getContProtocolos();
+
     Long contAll();
 
     Protocolo getProtocolo(Long id);

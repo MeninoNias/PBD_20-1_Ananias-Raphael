@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface FuncionarioService {
 
+    Integer countFunc();
+
     List<Funcionario> getFuncionarios();
 
     Funcionario getFuncionario(Long id);

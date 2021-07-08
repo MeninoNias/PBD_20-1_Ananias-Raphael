@@ -19,11 +19,7 @@
                                         <h6 class="mb-4">PROTOCOLOS RESPONDIDOS</h6>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-9">
-                                                <h3 class="f-w-300 d-flex align-items-center m-b-0">1</h3>
-                                            </div>
-
-                                            <div class="col-3 text-right">
-                                                <p class="m-b-0">16%</p>
+                                                <h3 class="f-w-300 d-flex align-items-center m-b-0" th:text="${protocolosResp}"></h3>
                                             </div>
                                         </div>
                                         <div class="progress m-t-30" style="height: 7px;">
@@ -42,11 +38,9 @@
                                         <h6 class="mb-4">PROTOCOLOS PENDENTES</h6>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-9">
-                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0">5</h3>
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0" th:text="${protocolosPend}"></h3>
                                             </div>
-                                            <div class="col-3 text-right">
-                                                <p class="m-b-0">83%</p>
-                                            </div>
+
                                         </div>
                                         <div class="progress m-t-30" style="height: 7px;">
                                             <div class="progress-bar progress-c-theme2" role="progressbar"
@@ -64,10 +58,7 @@
                                         <h6 class="mb-4">PROTOCOLOS CANCELADOS</h6>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-9">
-                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0">0</h3>
-                                            </div>
-                                            <div class="col-3 text-right">
-                                                <p class="m-b-0">0%</p>
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0" th:text="${protocolosCanc}"></h3>
                                             </div>
                                         </div>
                                         <div class="progress m-t-30" style="height: 7px;">
@@ -151,7 +142,7 @@
                                                 <i class="feather icon-user f-30 text-c-green"></i>
                                             </div>
                                             <div class="col">
-                                                <h3 class="f-w-300">2</h3>
+                                                <h3 class="f-w-300" th:text="${funcs}"></h3>
                                                 <span class="d-block text-uppercase">TOTAL DE FUNCIONARIOS</span>
                                             </div>
                                         </div>

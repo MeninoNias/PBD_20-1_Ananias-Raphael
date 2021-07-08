@@ -8,4 +8,5 @@ import java.util.List;
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
     Funcionario findByMatricula(String matricula);
     List<Funcionario> findFuncionariosByAtivoBanco(boolean b);
+    Integer countAllBy();
 }

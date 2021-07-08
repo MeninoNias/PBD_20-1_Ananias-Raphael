@@ -3,6 +3,8 @@ package com.pbd.sertaoprotocolo.controller;
 import com.pbd.sertaoprotocolo.model.Aviso;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.AvisoService;
+import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import com.pbd.sertaoprotocolo.service.UserService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,12 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProtocoloService protocoloService;
+
+    @Autowired
+    private FuncionarioService funcionarioService;
+
     @GetMapping("/")
     public String index(){
         return "index";
@@ -32,6 +40,13 @@ public class HomeController {
     @GetMapping("/home")
     public ModelAndView home(HttpSession session){
         ModelAndView view = new ModelAndView();
+        Object[] list = protocoloService.getContProtocolos().toArray();
+        view.addObject("protocolosResp", list.length > 0 ? list[0] : 0);
+        view.addObject("protocolosPend", list.length > 1 ? list[1] : 0);
+        view.addObject("protocolosCanc", list.length > 2 ? list[1] : 0);
+        view.addObject("funcs", funcionarioService.countFunc());
+
+
         view.setViewName("home");
         return view;
     }

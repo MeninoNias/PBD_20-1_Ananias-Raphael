@@ -21,6 +21,11 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 
     @Override
+    public Integer countFunc() {
+        return funcionarioRepository.countAllBy();
+    }
+
+    @Override
     @Transactional
     public List<Funcionario> getFuncionarios() {
         return funcionarioRepository.findFuncionariosByAtivoBanco(true);
