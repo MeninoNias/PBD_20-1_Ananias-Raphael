@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @Entity
@@ -20,7 +19,15 @@ public class Log extends AbstractEntity<Long> {
     @Enumerated(EnumType.STRING)
     private Operacoes operacoes;
 
-    public Log(User user) {
+    private String descricao;
+
+    public Log(User user, String descricao, Operacoes operacoes) {
         this.user = user;
+        this.descricao = descricao;
+        this.operacoes = operacoes;
+    }
+
+    public String getLog(){
+        return getId()+ " - "+ user.getUserName() + " - " + operacoes.getDescricao()+ " | " + descricao;
     }
 }

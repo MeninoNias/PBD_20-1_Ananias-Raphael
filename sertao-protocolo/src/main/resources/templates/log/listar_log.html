@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html layout:decorate="~{core/base}">
+<body>
+<div layout:fragment="main">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <div th:replace="core/fragments/alert"></div>
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-left"><strong>LOGS</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="log : ${logs}">
+                                <tr>
+                                    <th scope="row" class="align-middle text-left py-1">
+                                        <h6 th:text="${log.getLog()}"></h6>
+                                    </th>
+                                    <th scope="row" class="align-middle text-left py-1">
+                                        <h6 th:text="${#temporals.format(log.updated_at, 'dd/MM/yyyy')}"></h6>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

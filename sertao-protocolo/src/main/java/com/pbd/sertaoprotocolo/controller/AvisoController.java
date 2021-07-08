@@ -1,9 +1,12 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Aviso;
+import com.pbd.sertaoprotocolo.model.Log;
+import com.pbd.sertaoprotocolo.model.Operacoes;
 import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.AvisoService;
 import com.pbd.sertaoprotocolo.service.FuncionarioService;
+import com.pbd.sertaoprotocolo.service.LogService;
 import com.pbd.sertaoprotocolo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,6 +35,9 @@ public class AvisoController {
 
     @Autowired
     private AvisoService avisoService;
+
+    @Autowired
+    private LogService logService;
 
     @GetMapping("/listar")
     public ModelAndView listarAvisos(Aviso aviso) {
@@ -72,13 +78,16 @@ public class AvisoController {
             modelAndView.setViewName("aviso/form_aviso");
         }
         avisoService.createAviso(aviso);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, aviso.getTitulo()+" - Aviso registrado com sucesso", Operacoes.IN));
         attributes.addFlashAttribute("success", "Aviso registrado com sucesso");
         modelAndView.setViewName("redirect:/avisos/listar");
         return modelAndView;
     }
 
     @GetMapping("/update/{id}")
-    public ModelAndView createAviso(@PathVariable("id") Long id) {
+    public ModelAndView updateAviso(@PathVariable("id") Long id) {
         ModelAndView view = new ModelAndView();
         Aviso aviso = avisoService.getAviso(id);
         view.addObject("funcionariosSelect", funcionarioService.getFuncionarios());
@@ -95,6 +104,9 @@ public class AvisoController {
             attributes.addFlashAttribute("error", "Aviso não pode ser deletado");
         } else {
             avisoService.deleteAviso(aviso.getId());
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, aviso.getTitulo()+" - Aviso deletado com sucesso", Operacoes.DE));
         }
         view.setViewName("redirect:/avisos/listar");
         System.out.println(view);
@@ -109,6 +121,9 @@ public class AvisoController {
             modelAndView.setViewName("aviso/form_aviso");
         }
         avisoService.createAviso(aviso);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, aviso.getTitulo()+" - Aviso atualizado com sucesso", Operacoes.UP));
         attributes.addFlashAttribute("success", "Aviso registrado com sucesso");
         modelAndView.setViewName("redirect:/avisos/listar");
         return modelAndView;
@@ -118,6 +133,9 @@ public class AvisoController {
     public ModelAndView detailAviso(@PathVariable("id") Long id) {
         ModelAndView view = new ModelAndView();
         Aviso aviso = avisoService.getAviso(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, aviso.getTitulo()+" - Aviso vizualiado com sucesso", Operacoes.RE));
         view.addObject("aviso", aviso);
         view.setViewName("aviso/detail_aviso");
         return view;

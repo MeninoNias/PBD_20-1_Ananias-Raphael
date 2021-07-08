@@ -19,7 +19,7 @@ public enum Operacoes {
         return sigla;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public String getDescricao() {
+        return descricao;
     }
 }

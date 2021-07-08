@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/logs")
 public class LogController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class LogController {
     public ModelAndView listLog() {
         ModelAndView view = new ModelAndView();
         view.addObject("logs", logService.getLogs());
-        view.setViewName("log/log_list");
+        view.setViewName("log/listar_log");
         return view;
     }
 
