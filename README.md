@@ -3,18 +3,16 @@
 login e senha dos usuarios:
 
 ##### ADMIN
-- login: berg
-- senha: berg123
+- login: ananias
+- senha: ananias123
 
 ##### USER_ADMIN
 - login: leonardo
 - senha: leo123
 
 ##### USER
-- login: adson
-- senha: adson123
-- login: pedro
-- senha: pedro123
+- login: nias
+- senha: nias123
 
 
 ##### TECNOLOGIAS USADAS
