@@ -80,39 +80,22 @@
                                         <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <tbody>
-                                                <tr class="unread">
+                                                <tr class="unread" th:each="p : ${protocolos}">
                                                     <td><img class="rounded-circle" style="width:40px;"
                                                              src="assets/images/user/avatar-1.jpg"
                                                              alt="activity-user"></td>
                                                     <td>
-                                                        <h6 class="mb-1">Isabella Christensen</h6>
-                                                        <p class="m-0">Lorem Ipsum is simply…</p>
+                                                        <h6 class="mb-1" th:text="${p.assunto}"></h6>
+                                                        <p class="m-0" th:text="${p.nProtocolo}"></p>
                                                     </td>
                                                     <td>
-                                                        <h6 class="text-muted"><i
-                                                                class="fas fa-circle text-c-green f-10 m-r-15"></i>11
-                                                            MAY 12:56</h6>
+                                                        <h6 class="text-muted">
+                                                            <i class="fas fa-circle text-c-green f-10 m-r-15"></i>
+                                                            <span th:text="${p.updated_at}"></span>
+                                                        </h6>
                                                     </td>
-                                                    <td><a href="#!"
-                                                           class="label theme-bg text-white f-12">Responder</a></td>
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><img class="rounded-circle" style="width:40px;"
-                                                             src="assets/images/user/avatar-2.jpg"
-                                                             alt="activity-user"></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Mathilde Andersen</h6>
-                                                        <p class="m-0">Lorem Ipsum is simply text of…</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted"><i
-                                                                class="fas fa-circle text-c-red f-10 m-r-15"></i>11 MAY
-                                                            10:35</h6>
-                                                    </td>
-                                                    <td><a href="#!"
-                                                           class="label theme-bg text-white f-12">Responder</a></td>
-
-
+<!--                                                    <td><a href="#!"-->
+<!--                                                           class="label theme-bg text-white f-12">Responder</a></td>-->
                                                 </tr>
                                                 </tbody>
                                             </table>

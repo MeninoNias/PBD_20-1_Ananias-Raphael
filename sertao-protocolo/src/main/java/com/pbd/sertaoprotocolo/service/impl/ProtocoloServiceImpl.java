@@ -24,9 +24,17 @@ public class ProtocoloServiceImpl implements ProtocoloService {
     private ProtocoloExport protocoloExport;
 
 
+
     @Override
+    @Transactional
     public List<Protocolo> getProtocolos() {
         return protocoloRepository.findByAtivoBanco(true);
+    }
+
+    @Override
+    @Transactional
+    public List<Protocolo> getLastsProtocolos() {
+        return protocoloRepository.findLasts();
     }
 
     @Override

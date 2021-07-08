@@ -10,6 +10,9 @@ public interface ProtocoloService {
 
     List<Protocolo> getProtocolos();
 
+    List<Protocolo> getLastsProtocolos();
+
+
     List<Protocolo> getProtocolosByFuncionarios(Funcionario funcionario);
 
     List<Integer> getContProtocolos();

@@ -45,6 +45,8 @@ public class HomeController {
         view.addObject("protocolosPend", list.length > 1 ? list[1] : 0);
         view.addObject("protocolosCanc", list.length > 2 ? list[1] : 0);
         view.addObject("funcs", funcionarioService.countFunc());
+        view.addObject("protocolos", protocoloService.getLastsProtocolos());
+
 
 
         view.setViewName("home");

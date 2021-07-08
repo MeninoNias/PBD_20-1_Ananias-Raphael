@@ -37,24 +37,24 @@ public class DummyData {
 //        cidadeService.createCidade(cidade);
 
         Role role = new Role();
-        role.setRole("ADMIN");
+        role.setRole("USER_ADMIN");
         roleRepository.save(role);
 
-        Funcionario funcionario = new Funcionario();
-        funcionario.setNome("Ananias Raphel");
-        funcionario.setMatricula("0000");
+//        Funcionario funcionario = new Funcionario();
+//        funcionario.setNome("Ananias Raphel");
+//        funcionario.setMatricula("0000");
+//
+//        Funcionario funcionario1 = funcionarioService.createFuncionario(funcionario);
+//
+//
+//        User user = new User();
+//        user.setFuncionario(funcionario);
+//        user.setUserName("ananias");
+//        user.setActive(true);
+//        user.setPassword("ananias123");
+//        user.setEmail("admin@admin.com");
 
-        Funcionario funcionario1 = funcionarioService.createFuncionario(funcionario);
-
-
-        User user = new User();
-        user.setFuncionario(funcionario);
-        user.setUserName("ananias");
-        user.setActive(true);
-        user.setPassword("ananias123");
-        user.setEmail("admin@admin.com");
-
-        userService.saveUser(user);
+//        userService.saveUser(user);
 
 //        Role role = new Role();
 //        role.setRole("USER");
