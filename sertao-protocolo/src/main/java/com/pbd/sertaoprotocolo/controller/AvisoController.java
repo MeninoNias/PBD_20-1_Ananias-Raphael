@@ -34,10 +34,11 @@ public class AvisoController {
     private UserService userService;
 
     @Autowired
-    private AvisoService avisoService;
+    private LogService logService;
 
     @Autowired
-    private LogService logService;
+    private AvisoService avisoService;
+
 
     @GetMapping("/listar")
     public ModelAndView listarAvisos(Aviso aviso) {

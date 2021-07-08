@@ -1,8 +1,15 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.CategoriaProtocolo;
+import com.pbd.sertaoprotocolo.model.Log;
+import com.pbd.sertaoprotocolo.model.Operacoes;
+import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
+import com.pbd.sertaoprotocolo.service.LogService;
+import com.pbd.sertaoprotocolo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +27,12 @@ public class CategoriaController {
 
     @Autowired
     private CategoriaProtocoloService categoriaService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private LogService logService;
 
     @GetMapping("/listar")
     public ModelAndView listCategoria() {
@@ -42,12 +55,18 @@ public class CategoriaController {
         categoriaProtocolo.setNome(categoriaProtocolo.getNome().toUpperCase());
         CategoriaProtocolo categoriaExist = categoriaService.getCategoriaProtocoloNome(categoriaProtocolo.getNome());
         if (categoriaExist != null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, categoriaProtocolo.getNome() + " - Categoria não foi criada (Já existe um categoria registrado com o essa nome.)", Operacoes.IN));
             result.rejectValue("nome", "error.categoria", "Já existe um categoria registrado com o essa nome.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("categoria_protocolo/categoria_form");
             }
         } else {
             categoriaService.createCategoriaProtocolo(categoriaProtocolo);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, categoriaProtocolo.getNome() + " - Categoria criada com sucesso", Operacoes.IN));
             attributes.addFlashAttribute("success", "Categoria registrado com sucesso");
             modelAndView.setViewName("redirect:/categorias/listar");
         }
@@ -71,6 +90,9 @@ public class CategoriaController {
             modelAndView.setViewName("categoria_protocolo/categoria_form");
         }
         categoriaService.createCategoriaProtocolo(categoriaProtocolo);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, categoriaProtocolo.getNome() + " - Categoria atualizada com sucesso", Operacoes.UP));
         attributes.addFlashAttribute("success", "CategoriaProtocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/categorias/listar");
         return modelAndView;

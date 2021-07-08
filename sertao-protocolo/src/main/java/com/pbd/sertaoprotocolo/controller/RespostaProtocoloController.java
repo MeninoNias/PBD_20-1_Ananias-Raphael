@@ -1,9 +1,7 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.model.Protocolo;
-import com.pbd.sertaoprotocolo.model.RespostaProtocolo;
-import com.pbd.sertaoprotocolo.model.StatusProtocolo;
-import com.pbd.sertaoprotocolo.model.User;
+import com.pbd.sertaoprotocolo.model.*;
+import com.pbd.sertaoprotocolo.service.LogService;
 import com.pbd.sertaoprotocolo.service.RespostaProtocoloService;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import com.pbd.sertaoprotocolo.service.UserService;
@@ -31,6 +29,9 @@ public class RespostaProtocoloController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LogService logService;
 
     @Autowired
     private RespostaProtocoloService resposta_protocoloService;
@@ -78,6 +79,8 @@ public class RespostaProtocoloController {
             modelAndView.setViewName("resposta_protocolo/form_resposta_protocolo");
         }
         resposta_protocoloService.createRespostaProtocolo(resposta_protocolo);
+        logService.createLog(new Log(user, resposta_protocolo.getProtocolo().getNProtocolo()+" - Resposta protocolo registrado com sucesso", Operacoes.IN));
+
         modelAndView.addObject("successMessage", "RespostaProtocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/protocolos/listar");
         return modelAndView;
@@ -107,6 +110,9 @@ public class RespostaProtocoloController {
             modelAndView.setViewName("resposta_protocolo/form_resposta_protocolo");
         }
         resposta_protocoloService.createRespostaProtocolo(respostaProtocolo);
+
+        logService.createLog(new Log(user, respostaProtocolo.getProtocolo().getNProtocolo()+" - Resposta atualizado com sucesso", Operacoes.UP));
+
         modelAndView.addObject("successMessage", "RespostaProtocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/protocolos/listar");
         return modelAndView;
@@ -116,6 +122,9 @@ public class RespostaProtocoloController {
     public ModelAndView detailRespostaProtocolo(@PathVariable("id") Long id) {
         ModelAndView view = new ModelAndView();
         Protocolo protocolo = protocoloService.getProtocolo(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, protocolo.getNProtocolo()+" - Resposta vizualizado com sucesso", Operacoes.RE));
         view.addObject("protocolo", protocolo);
         view.setViewName("resposta_protocolo/detail_resposta_protocolo");
         return view;

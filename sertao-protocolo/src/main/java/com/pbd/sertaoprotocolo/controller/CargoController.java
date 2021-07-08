@@ -1,8 +1,15 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.model.Cargo;
+import com.pbd.sertaoprotocolo.model.Log;
+import com.pbd.sertaoprotocolo.model.Operacoes;
+import com.pbd.sertaoprotocolo.model.User;
 import com.pbd.sertaoprotocolo.service.CargoService;
+import com.pbd.sertaoprotocolo.service.LogService;
+import com.pbd.sertaoprotocolo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +27,11 @@ public class CargoController {
 
     @Autowired
     private CargoService cargoService;
+
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private LogService logService;
 
     @GetMapping("/listar")
     public ModelAndView listCargo() {
@@ -42,6 +54,9 @@ public class CargoController {
         cargo.setNome(cargo.getNome().toUpperCase());
         Cargo cargoExist = cargoService.getCargoNome(cargo.getNome());
         if (cargoExist != null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, cargo.getNome() + " - Cargo não foi criado (Já existe um cargo registrado com o essa nome)", Operacoes.IN));
             result.rejectValue("nome", "error.cargo", "Já existe um cargo registrado com o essa nome.");
             attributes.addFlashAttribute("error", "Já existe um cargo registrado com o essa nome.");
             if (result.hasErrors()) {
@@ -49,6 +64,9 @@ public class CargoController {
             }
         } else {
             cargoService.createCargo(cargo);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, cargo.getNome() + " - Cargo criado com sucesso", Operacoes.IN));
             attributes.addFlashAttribute("success", "Cargo registrado com sucesso");
             modelAndView.setViewName("redirect:/cargos/listar");
         }
@@ -70,12 +88,18 @@ public class CargoController {
         cargo.setNome(cargo.getNome().toUpperCase());
         Cargo cargoExist = cargoService.getCargoNome(cargo.getNome());
         if (cargoExist != null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, cargo.getNome() + " - Cargo não foi atualizado (Já existe um cargo registrado com o essa nome)", Operacoes.IN));
             result.rejectValue("nome", "error.cargo", "Já existe um cargo registrado com o essa nome.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("cargo/cargo_form");
             }
         } else {
             cargoService.createCargo(cargo);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, cargo.getNome() + " - Cargo atualizado com sucesso", Operacoes.UP));
             attributes.addFlashAttribute("successMessage", "Cargo registrado com sucesso");
             modelAndView.setViewName("redirect:/cargos/listar");
         }

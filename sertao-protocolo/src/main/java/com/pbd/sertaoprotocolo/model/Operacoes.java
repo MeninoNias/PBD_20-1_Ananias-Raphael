@@ -5,7 +5,9 @@ public enum Operacoes {
     IN("IN", "CRIOU"),
     DE("DE", "DELETOU"),
     UP("UP", "ATUALIZOU"),
-    RE("RE", "VIZUALIZOU");
+    RE("RE", "VIZUALIZOU"),
+    LO("LO", "LOGIN");
+
 
     private String sigla;
     private String descricao;

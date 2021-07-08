@@ -1,9 +1,8 @@
 package com.pbd.sertaoprotocolo.controller;
 
 import com.pbd.sertaoprotocolo.dto.UserMatDTO;
-import com.pbd.sertaoprotocolo.model.Funcionario;
-import com.pbd.sertaoprotocolo.model.Role;
-import com.pbd.sertaoprotocolo.model.User;
+import com.pbd.sertaoprotocolo.model.*;
+import com.pbd.sertaoprotocolo.service.LogService;
 import com.pbd.sertaoprotocolo.service.UserService;
 import com.pbd.sertaoprotocolo.service.impl.FuncionarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,9 @@ public class LoginController {
 
     @Autowired
     private FuncionarioServiceImpl funcionarioService;
+
+    @Autowired
+    private LogService logService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
@@ -84,7 +86,7 @@ public class LoginController {
     public String afterLogin() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
-
+        logService.createLog(new Log(user, user.getUserName()+" - EFETUOU LOGIN", Operacoes.LO));
         Set<Role> roleSet = user.getRoles();
         for (Role role : roleSet) {
             if (role.getRole().equals("ADMIN")) {

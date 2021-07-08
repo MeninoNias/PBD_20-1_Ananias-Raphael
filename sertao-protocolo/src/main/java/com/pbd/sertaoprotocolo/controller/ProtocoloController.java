@@ -2,12 +2,11 @@ package com.pbd.sertaoprotocolo.controller;
 
 
 import com.pbd.sertaoprotocolo.model.*;
-import com.pbd.sertaoprotocolo.model.Protocolo;
 import com.pbd.sertaoprotocolo.service.CategoriaProtocoloService;
+import com.pbd.sertaoprotocolo.service.LogService;
 import com.pbd.sertaoprotocolo.service.ProtocoloService;
 import com.pbd.sertaoprotocolo.service.UserService;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,7 +36,11 @@ public class ProtocoloController {
     public ProtocoloService protocoloService;
 
     @Autowired
-    public UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private LogService logService;
+
 
     @Autowired
     public CategoriaProtocoloService categoriaProtocoloService;
@@ -108,6 +111,8 @@ public class ProtocoloController {
 
         protocoloService.createProtocolo(protocolo);
 
+        logService.createLog(new Log(user, protocolo.getAssunto() + " - Protocolo registrado com sucesso", Operacoes.IN));
+
         modelAndView.addObject("successMessage", "Protocolo registrado com sucesso");
         modelAndView.setViewName("redirect:/protocolos/my_protocol");
 
@@ -129,6 +134,9 @@ public class ProtocoloController {
         ModelAndView view = new ModelAndView();
         Protocolo protocolo = protocoloService.getProtocolo(id);
         protocoloService.deleteProtocolo(protocolo.getId());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, protocolo.getAssunto() + " - Protocolo deletado com sucesso", Operacoes.DE));
         view.setViewName("redirect:/protocolos/my_protocol");
         return view;
     }
@@ -141,6 +149,9 @@ public class ProtocoloController {
             modelAndView.setViewName("protocolo/protocolo_form");
         } else {
             protocoloService.updateProtocolo(protocolo);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, protocolo.getAssunto() + " - Protocolo atualizado com sucesso", Operacoes.UP));
             modelAndView.addObject("successMessage", "Protocolo registrado com sucesso");
             modelAndView.setViewName("redirect:/protocolos/my_protocol");
         }

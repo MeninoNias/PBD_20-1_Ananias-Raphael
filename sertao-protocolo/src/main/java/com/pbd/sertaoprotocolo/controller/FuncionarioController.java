@@ -1,13 +1,11 @@
 package com.pbd.sertaoprotocolo.controller;
 
-import com.pbd.sertaoprotocolo.model.Funcionario;
-import com.pbd.sertaoprotocolo.model.UF;
-import com.pbd.sertaoprotocolo.service.CargoService;
-import com.pbd.sertaoprotocolo.service.CidadeService;
-import com.pbd.sertaoprotocolo.service.FuncionarioService;
-import com.pbd.sertaoprotocolo.service.SubSetorService;
+import com.pbd.sertaoprotocolo.model.*;
+import com.pbd.sertaoprotocolo.service.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +36,12 @@ public class FuncionarioController {
     @Autowired
     private SubSetorService subSetorService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private LogService logService;
+
     @GetMapping("/listar")
     public ModelAndView listFuncionario() {
         ModelAndView view = new ModelAndView();
@@ -62,12 +66,18 @@ public class FuncionarioController {
 
         Funcionario funcionarioExist = funcionarioService.getFuncionarioMat(funcionario.getMatricula());
         if (funcionarioExist != null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, funcionario.getNome()+" - Já existe um funcionario registrado com o essa matricula", Operacoes.IN));
             result.rejectValue("matricula", "error", "Já existe um funcionario registrado com o essa matricula.");
             if (result.hasErrors()) {
                 modelAndView.setViewName("funcionario/form_funcionario");
             }
         } else {
             funcionarioService.createFuncionario(funcionario);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            logService.createLog(new Log(user, funcionario.getNome()+" - Funcionario registrado com sucesso", Operacoes.IN));
             attributes.addFlashAttribute("success", "Funcionario registrado com sucesso");
             modelAndView.setViewName("redirect:/funcionarios/listar");
         }
@@ -93,7 +103,11 @@ public class FuncionarioController {
         if (result.hasErrors()) {
             modelAndView.setViewName("funcionario/form_funcionario");
         }
+
         funcionarioService.createFuncionario(funcionario);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, funcionario.getNome()+" - Funcionario atualizado com sucesso", Operacoes.UP));
         attributes.addFlashAttribute("success", "Funcionario alterado com sucesso");
         modelAndView.setViewName("redirect:/funcionarios/listar");
         return modelAndView;
@@ -113,6 +127,9 @@ public class FuncionarioController {
         ModelAndView view = new ModelAndView();
         Funcionario funcionario = funcionarioService.getFuncionario(id);
         funcionarioService.deleteFuncionario(funcionario.getId());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        logService.createLog(new Log(user, funcionario.getNome()+" - Funcionario deletado com sucesso", Operacoes.DE));
         attributes.addFlashAttribute("success", "Funcionario deletado com sucesso");
         view.setViewName("redirect:/funcionarios/listar");
         return view;

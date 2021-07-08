@@ -76,7 +76,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="id_cidade">Cidade</label>
                                     <input type="text" name="bairro" maxlength="255" class="form-control" required=""
-                                           id="id_cidade" th:value="${funcionario.endereco.cidade.nome}">
+                                           id="id_cidade" th:value="${funcionario.endereco.cidade != null} ? ${funcionario.endereco.cidade.nome} : '-'">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="id_estado">Estado</label>
